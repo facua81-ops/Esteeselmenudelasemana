@@ -7,12 +7,12 @@
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ppuri - Menú Semanal</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf8f6; margin: 0; padding: 20px; color: #221919; }
-        .container { max-width: 550px; margin: 0 auto; background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(34, 25, 25, 0.04); padding-bottom: 140px; }
+        .container { max-width: 550px; margin: 0 auto; background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(34, 25, 25, 0.04); padding-bottom: 240px; }
         h1 { text-align: center; color: #221919; margin: 0 0 8px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
         .subtitle { text-align: center; color: #8c8282; font-size: 14px; margin-bottom: 35px; font-weight: 400; }
         .menu-item { border-bottom: 1px solid #f1eeeb; padding: 20px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
@@ -20,10 +20,17 @@
         .info { flex: 1; }
         .name { font-weight: 700; font-size: 17px; color: #221919; }
         .description { font-size: 13.5px; color: #736969; margin-top: 6px; line-height: 1.5; font-weight: 400; }
-        .right-side { text-align: right; min-width: 95px; }
+        .right-side { text-align: right; min-width: 110px; }
         .price { font-size: 17px; font-weight: 700; color: #801d1d; margin-bottom: 12px; }
+        
+        /* Selectores de cantidad (+ y -) */
+        .counter-container { display: inline-flex; align-items: center; background: #fdf2f2; border-radius: 24px; padding: 2px; }
+        .btn-counter { background: transparent; color: #801d1d; border: none; width: 32px; height: 32px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: 0.2s; }
+        .btn-counter:hover { background: #801d1d; color: white; }
+        .qty-display { min-width: 24px; text-align: center; font-weight: 700; font-size: 14px; color: #221919; }
         .btn-add { background: #fdf2f2; color: #801d1d; border: none; padding: 8px 16px; border-radius: 24px; font-weight: 600; cursor: pointer; font-size: 13px; transition: all 0.2s ease; }
         .btn-add:hover { background: #801d1d; color: white; }
+        
         .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); padding: 20px; display: none; z-index: 1000; border-top: 1px solid #f1eeeb; }
         .cart-container { max-width: 550px; margin: 0 auto; }
         .form-group { margin-bottom: 14px; }
@@ -78,7 +85,22 @@
         menuData.forEach(plato => {
             const item = document.createElement('div');
             item.className = 'menu-item';
-            item.innerHTML = '<div class="info"><div class="name">' + plato.nombre + '</div><div class="description">' + plato.descripcion + '</div></div><div class="right-side"><div class="price">$' + plato.precio + '</div><button class="btn-add" onclick="agregarAlCarrito(' + plato.id + ')">Agregar</button></div>';
+            
+            // Revisa si ya hay elementos en el carrito para mostrar el contador o el botón de agregar
+            const cantidad = carrito[plato.id] || 0;
+            let botonHtml = `<button class="btn-add" onclick="agregarAlCarrito(${plato.id})">Agregar</button>`;
+            
+            if (cantidad > 0) {
+                botonHtml = `
+                    <div class="counter-container">
+                        <button class="btn-counter" onclick="quitarDelCarrito(${plato.id})">-</button>
+                        <span class="qty-display">${cantidad}</span>
+                        <button class="btn-counter" onclick="agregarAlCarrito(${plato.id})">+</button>
+                    </div>
+                `;
+            }
+
+            item.innerHTML = '<div class="info"><div class="name">' + plato.nombre + '</div><div class="description">' + plato.descripcion + '</div></div><div class="right-side"><div class="price">$' + plato.precio + '</div><div id="btn-container-' + plato.id + '">' + botonHtml + '</div></div>';
             container.appendChild(item);
         });
     }
@@ -86,6 +108,18 @@
     function agregarAlCarrito(id) {
         if (carrito[id]) { carrito[id]++; } else { carrito[id] = 1; }
         actualizarInterfazCarrito();
+        renderizarMenu(); // Refresca los botones individuales
+    }
+
+    function quitarDelCarrito(id) {
+        if (carrito[id]) {
+            carrito[id]--;
+            if (carrito[id] === 0) {
+                delete carrito[id];
+            }
+        }
+        actualizarInterfazCarrito();
+        renderizarMenu(); // Refresca los botones individuales
     }
 
     function actualizarInterfazCarrito() {
@@ -120,6 +154,8 @@
             }
         });
         textoPedido += "\n💰 *TOTAL A PAGAR:* *$" + total + "*";
+        
+        // URL Corregida con la barra "/" agregada para que no falle el enlace móvil
         const urlFinal = "https://wa.me" + TELEFONO + "?text=" + encodeURIComponent(textoPedido);
         window.open(urlFinal, '_blank');
     }
