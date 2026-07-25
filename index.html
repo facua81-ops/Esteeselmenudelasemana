@@ -2,10 +2,19 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=4.0">
     <title>Este es el menú de la semana</title>
 </head>
-<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #fcfbfa;">
+<body style=<!-- Sección del Encabezado / Logo Profesional -->
+<header style="text-align: center; padding: 30px 10px; background-color: #ffffff;">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <img src="image_71655ed7.png" alt="Ppuri Logo" style="width: 180px; height: auto; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333333; margin-top: 15px; font-size: 28px; letter-spacing: 1px;">Nuestro Menú de la Semana</h1>
+        <p style="font-family: 'Segoe UI', sans-serif; color: #777777; font-size: 16px; margin-top: 5px;">Sabor único directo a tu dirección</p>
+    </div>
+</header>
+<hr style="border: 0; height: 1px; background: #e0e0e0; margin: 0;">
+>
 
     <!-- Encabezado con los colores de Ppuri (Gris, Fuego/Bordeaux, Dorado) -->
     <header style="text-align: center; padding: 40px 20px; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
@@ -26,6 +35,186 @@
     </header>
 
     <!-- El resto del contenido de tu menú va acá abajo -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ppuri - Menú Semanal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf8f6; margin: 0; padding: 20px; color: #221919; }
+        .container { max-width: 550px; margin: 0 auto; background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(34, 25, 25, 0.04); padding-bottom: 240px; }
+        h1 { text-align: center; color: #221919; margin: 0 0 8px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+        .subtitle { text-align: center; color: #8c8282; font-size: 14px; margin-bottom: 35px; font-weight: 400; }
+        .menu-item { border-bottom: 1px solid #f1eeeb; padding: 20px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+        .menu-item:last-child { border-bottom: none; }
+        .info { flex: 1; }
+        .name { font-weight: 700; font-size: 17px; color: #221919; }
+        .description { font-size: 13.5px; color: #736969; margin-top: 6px; line-height: 1.5; font-weight: 400; }
+        .right-side { text-align: right; min-width: 110px; }
+        .price { font-size: 17px; font-weight: 700; color: #801d1d; margin-bottom: 12px; }
+        
+        .counter-container { display: inline-flex; align-items: center; background: #fdf2f2; border-radius: 24px; padding: 2px; }
+        .btn-counter { background: transparent; color: #801d1d; border: none; width: 32px; height: 32px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: 0.2s; }
+        .btn-counter:hover { background: #801d1d; color: white; }
+        .qty-display { min-width: 24px; text-align: center; font-weight: 700; font-size: 14px; color: #221919; }
+        .btn-add { background: #fdf2f2; color: #801d1d; border: none; padding: 8px 16px; border-radius: 24px; font-weight: 600; cursor: pointer; font-size: 13px; transition: all 0.2s ease; }
+        .btn-add:hover { background: #801d1d; color: white; }
+        
+        .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); padding: 20px; display: none; z-index: 1000; border-top: 1px solid #f1eeeb; }
+        .cart-container { max-width: 550px; margin: 0 auto; }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 11px; font-weight: 700; color: #221919; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .form-group input { width: 100%; padding: 12px; border: 1px solid #e1dbd6; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; color: #221919; background: #fdfdfd; }
+        .form-group input:focus { border-color: #801d1d; outline: none; background: white; }
+        
+        .btn-order { display: block; width: 100%; box-sizing: border-box; background: #25D366; color: white; text-align: center; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+        .btn-order:hover { background: #128C7E; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Ppuri</h1>
+    <div class="subtitle">Selecciona tus platos semanales y realiza tu pedido directo a WhatsApp</div>
+    <div id="menu-container">Cargando nuestro menú...</div>
+</div>
+<div class="cart-bar" id="cart-bar">
+    <div class="cart-container">
+        <div class="form-group">
+            <label for="txt-nombre">NOMBRE COMPLETO *</label>
+            <input type="text" id="txt-nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="txt-direccion">DIRECCIÓN Y DOMICILIO DE ENTREGA *</label>
+            <input type="text" id="txt-direccion" placeholder="Calle, número, piso/depto, barrio" required>
+        </div>
+        <button class="btn-order" onclick="enviarWhatsApp()">
+            Enviar Pedido a WhatsApp (<span id="cart-total">$0</span>)
+        </button>
+    </div>
+</div>
+
+<script>
+    const TELEFONO = "5492994711828";
+    let menuData = [];
+    let carrito = {};
+
+    async function cargarMenu() {
+        try {
+            const respuesta = await fetch("menu.json?v=" + Date.now());
+            if (!respuesta.ok) throw new Error("No se pudo leer el archivo menu.json");
+            menuData = await respuesta.json();
+            renderizarMenu();
+        } catch (error) {
+            document.getElementById('menu-container').innerHTML = '<p style="color:#801d1d; text-align:center;">Error al cargar el menú. Asegúrate de que menu.json esté en la misma carpeta y subido a Netlify.</p>';
+            console.error(error);
+        }
+    }
+
+    function renderizarMenu() {
+        const container = document.getElementById('menu-container');
+        container.innerHTML = '';
+        menuData.forEach(plato => {
+            const item = document.createElement('div');
+            item.className = 'menu-item';
+            
+            const cantidad = carrito[plato.id] || 0;
+            let botonHtml = `<button class="btn-add" onclick="agregarAlCarrito(${plato.id})">Agregar</button>`;
+            
+            if (cantidad > 0) {
+                botonHtml = `
+                    <div class="counter-container">
+                        <button class="btn-counter" onclick="quitarDelCarrito(${plato.id})">-</button>
+                        <span class="qty-display">${cantidad}</span>
+                        <button class="btn-counter" onclick="agregarAlCarrito(${plato.id})">+</button>
+                    </div>
+                `;
+            }
+
+            item.innerHTML = '<div class="info"><div class="name">' + plato.nombre + '</div><div class="description">' + plato.descripcion + '</div></div><div class="right-side"><div class="price">$' + plato.precio + '</div><div id="btn-container-' + plato.id + '">' + botonHtml + '</div></div>';
+            container.appendChild(item);
+        });
+    }
+
+    function agregarAlCarrito(id) {
+        if (carrito[id]) { carrito[id]++; } else { carrito[id] = 1; }
+        actualizarInterfazCarrito();
+        renderizarMenu();
+    }
+
+    function quitarDelCarrito(id) {
+        if (carrito[id]) {
+            carrito[id]--;
+            if (carrito[id] === 0) {
+                delete carrito[id];
+            }
+        }
+        actualizarInterfazCarrito();
+        renderizarMenu();
+    }
+
+    function actualizarInterfazCarrito() {
+        let total = 0;
+        let itemsTotales = 0;
+        menuData.forEach(plato => {
+            if (carrito[plato.id]) {
+                total += plato.precio * carrito[plato.id];
+                itemsTotales += carrito[plato.id];
+            }
+        });
+        const cartBar = document.getElementById('cart-bar');
+        if (itemsTotales > 0) {
+            cartBar.style.display = 'block';
+            document.getElementById('cart-total').innerText = '$' + total;
+        } else {
+            cartBar.style.display = 'none';
+        }
+    }
+
+    function enviarWhatsApp() {
+        const nombre = document.getElementById('txt-nombre').value.trim();
+        const direccion = document.getElementById('txt-direccion').value.trim();
+        if (!nombre || !direccion) { 
+            alert("Por favor, ingresa tu nombre y domicilio antes de continuar."); 
+            return; 
+        }
+        
+        let textoPedido = "*¡NUEVO PEDIDO - PPURI!*\n\n👤 *Cliente:* " + nombre + "\n📍 *Domicilio:* " + direccion + "\n\n🛒 *Detalle del Pedido:*\n";
+        let total = 0;
+
+        menuData.forEach(plato => {
+            if (carrito[plato.id]) {
+                const subtotal = plato.precio * carrito[plato.id];
+                textoPedido += "• " + carrito[plato.id] + "x " + plato.nombre + " ($" + plato.precio + " c/u) -> *$" + subtotal + "*\n";
+                total += subtotal;
+            }
+        });
+        textoPedido += "\n💰 *TOTAL A PAGAR:* *$" + total + "*";
+        
+        // Formato oficial universal sin intermediarios
+        const urlFinal = "https://wa.me/" + TELEFONO + "?text=" + encodeURIComponent(textoPedido);
+        
+        // Crea un enlace dinámico en memoria en el preciso instante del clic (Infalible contra bloqueos)
+        const linkTemporal = document.createElement("a");
+        linkTemporal.href = urlFinal;
+        linkTemporal.target = "_blank"; 
+        linkTemporal.rel = "noopener noreferrer";
+        
+        document.body.appendChild(linkTemporal);
+        linkTemporal.click();
+        document.body.removeChild(linkTemporal);
+    }
+
+    window.onload = cargarMenu;
+</script>
+</body>
+</html>
 
 </body>
 </html>
