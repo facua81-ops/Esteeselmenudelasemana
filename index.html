@@ -36,7 +36,9 @@
         .form-group label { display: block; font-size: 11px; font-weight: 700; color: #221919; margin-bottom: 6px; letter-spacing: 0.5px; }
         .form-group input { width: 100%; padding: 12px; border: 1px solid #e1dbd6; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; color: #221919; background: #fdfdfd; }
         .form-group input:focus { border-color: #801d1d; outline: none; background: white; }
-        .btn-order { width: 100%; background: #25D366; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; font-family: inherit; transition: background 0.2s; }
+        
+        /* Botón de orden directo tipo enlace HTML real */
+        .btn-order { display: block; width: 100%; box-sizing: border-box; background: #25D366; color: white; text-align: center; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s; border: none; cursor: pointer; }
         .btn-order:hover { background: #128C7E; }
     </style>
 </head>
@@ -50,20 +52,18 @@
     <div class="cart-container">
         <div class="form-group">
             <label for="txt-nombre">NOMBRE COMPLETO *</label>
-            <input type="text" id="txt-nombre" placeholder="Tu nombre" required>
+            <input type="text" id="txt-nombre" placeholder="Tu nombre" required oninput="actualizarTextoEnlace()">
         </div>
         <div class="form-group">
             <label for="txt-direccion">DIRECCIÓN Y DOMICILIO DE ENTREGA *</label>
-            <input type="text" id="txt-direccion" placeholder="Calle, número, piso/depto, barrio" required>
+            <input type="text" id="txt-direccion" placeholder="Calle, número, piso/depto, barrio" required oninput="actualizarTextoEnlace()">
         </div>
-        <button class="btn-order" onclick="enviarWhatsApp()">
+        <!-- Enlace real nativo directo: Imposible de bloquear por el navegador -->
+        <a id="btn-enviar-wa" class="btn-order" href="#" target="_blank" onclick="return validarCampos();">
             Enviar Pedido a WhatsApp (<span id="cart-total">$0</span>)
-        </button>
+        </a>
     </div>
 </div>
-
-<!-- Enlace invisible para forzar la redirección nativa limpia -->
-<a id="wa-link-helper" href="#" style="display:none;"></a>
 
 <script>
     const TELEFONO = "5492994711828";
@@ -140,17 +140,32 @@
         } else {
             cartBar.style.display = 'none';
         }
+        actualizarTextoEnlace(); // Prepara el enlace con los datos actuales del carrito
     }
 
-    function enviarWhatsApp() {
+    // Valida que no envíen el pedido vacío
+    function validarCampos() {
         const nombre = document.getElementById('txt-nombre').value.trim();
         const direccion = document.getElementById('txt-direccion').value.trim();
-        if (!nombre || !direccion) { alert("Por favor, ingresa tu nombre y domicilio antes de continuar."); return; }
+        if (!nombre || !direccion) { 
+            alert("Por favor, ingresa tu nombre y domicilio antes de continuar."); 
+            return false; 
+        }
+        return true;
+    }
+
+    // Arma la URL de WhatsApp de manera dinámica en el href del enlace real
+    function actualizarTextoEnlace() {
+        const nombre = document.getElementById('txt-nombre').value.trim();
+        const direccion = document.getElementById('txt-direccion').value.trim();
         
         let textoPedido = "*¡NUEVO PEDIDO - PPURI!*\n\n👤 *Cliente:* " + nombre + "\n📍 *Domicilio:* " + direccion + "\n\n🛒 *Detalle del Pedido:*\n";
         let total = 0;
+        let tieneItems = false;
+
         menuData.forEach(plato => {
             if (carrito[plato.id]) {
+                tieneItems = true;
                 const subtotal = plato.precio * carrito[plato.id];
                 textoPedido += "• " + carrito[plato.id] + "x " + plato.nombre + " ($" + plato.precio + " c/u) -> *$" + subtotal + "*\n";
                 total += subtotal;
@@ -158,14 +173,14 @@
         });
         textoPedido += "\n💰 *TOTAL A PAGAR:* *$" + total + "*";
         
-        // Formato definitivo e infalible mediante API oficial de WhatsApp
-        const urlFinal = "https://whatsapp.com" + TELEFONO + "&text=" + encodeURIComponent(textoPedido);
-        
-        // Simula un clic real en un enlace nativo para saltearse cualquier bloqueo del navegador móvil
-        const helperLink = document.getElementById("wa-link-helper");
-        helperLink.href = urlFinal;
-        helperLink.click();
+        const botonWa = document.getElementById("btn-enviar-wa");
+        if (tieneItems) {
+            botonWa.href = "https://whatsapp.com" + TELEFONO + "&text=" + encodeURIComponent(textoPedido);
+        } else {
+            botonWa.href = "#";
+        }
     }
+
     window.onload = cargarMenu;
 </script>
 </body>
