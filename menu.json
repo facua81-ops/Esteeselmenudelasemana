@@ -1,38 +1,38 @@
 [
   {
     "id": 1,
-    "nombre": "Plato Ejemplo 1",
-    "descripcion": "Descripción elegante y corta del plato de esta semana.",
-    "precio": 1500
+    "nombre": "Canelones de estacion",
+    "descripcion": "Temporada de espinacas.",
+    "precio": 18000
   },
   {
     "id": 2,
-    "nombre": "Plato Ejemplo 2",
-    "descripcion": "Descripción elegante y corta del plato de esta semana.",
-    "precio": 1400
+    "nombre": "Ñoquis tradicionales ",
+    "descripcion": "Papa, huevo, harina para la masa.",
+    "precio": 14000
   },
   {
     "id": 3,
-    "nombre": "Plato Ejemplo 3",
-    "descripcion": "Descripción elegante y corta del plato de esta semana.",
-    "precio": 1300
+    "nombre": "Sorrentinos Ppuri por docena",
+    "descripcion": "Tomates deshidratados, queso gouda y berenjenas.",
+    "precio": 14000 
   },
   {
     "id": 4,
-    "nombre": "Plato Ejemplo 4",
-    "descripcion": "Descripción elegante y corta del plato de esta semana.",
-    "precio": 1200
+    "nombre": "Ensalada Ppuri",
+    "descripcion": "Remolacha asada al rescoldo, arroz para sushi, maiz frito, tofu condimentado, huevo pochado.",
+    "precio": 16000
   },
   {
     "id": 5,
-    "nombre": "Plato Ejemplo 5",
-    "descripcion": "Descripción elegante y corta del plato de esta semana.",
-    "precio": 1250
+    "nombre": "Empanadas cortadas a cuchillo por docena",
+    "descripcion": "Corte tiernizadocortado a cuchillo en coccion lenta, masa casera.",
+    "precio": 35000
   },
   {
     "id": 6,
-    "nombre": "Plato Ejemplo 6",
-    "descripcion": "Descripción elegante y corta del plato de esta semana.",
-    "precio": 1100
+    "nombre": "Rotolos de calabaza por porcion de 4 unidades",
+    "descripcion": "Masa al huevo, cabuttia,cebolla, queso .",
+    "precio": 15000
   }
 ]
