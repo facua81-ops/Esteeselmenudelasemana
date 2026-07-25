@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Antiparasitario de Caché Estricto -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ppuri - Menú Semanal</title>
+    <!-- Fuente profesional de Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --primary: #801d1d; /* Rojo fuego del logo */
+            --dark: #221919;    /* Marrón/Negro oscuro para fuentes */
+            --bg: #faf8f6;      /* Fondo crema muy suave y limpio */
+        }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg); 
+            margin: 0; 
+            padding: 20px; 
+            color: var(--dark); 
+        }
+        .container { 
+            max-width: 550px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 30px 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(34, 25, 25, 0.04); 
+            padding-bottom: 140px; 
+        }
+        h1 { 
+            text-align: center; 
+            color: var(--dark); 
+            margin: 0 0 8px 0; 
+            font-size: 32px; 
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .subtitle { 
+            text-align: center; 
+            color: #8c8282; 
+            font-size: 14px; 
+            margin-bottom: 35px; 
+            font-weight: 400;
+        }
+        .menu-item { 
+            border-bottom: 1px solid #f1eeeb; 
+            padding: 20px 0; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            gap: 20px; 
+        }
+        .menu-item:last-child { border-bottom: none; }
+        .info { flex: 1; }
+        .name { font-weight: 700; font-size: 17px; color: var(--dark); }
+        .description { font-size: 13.5px; color: #736969; margin-top: 6px; line-height: 1.5; font-weight: 400; }
+        .right-side { text-align: right; min-width: 95px; }
+        .price { font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+        .btn-add { background: #fdf2f2; color: var(--primary); border: none; padding: 8px 16px; border-radius: 24px; font-weight: 600; cursor: pointer; font-size: 13px; transition: all 0.2s ease; }
+        .btn-add:hover { background: var(--primary); color: white; }
+        
+        /* Barra Fija Inferior */
+        .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); padding: 20px; display: none; z-index: 1000; border-top: 1px solid #f1eeeb; }
+        .cart-container { max-width: 550px; margin: 0 auto; }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--dark); margin-bottom: 6px; letter-spacing: 0.5px; }
+        .form-group input { width: 100%; padding: 12px; border: 1px solid #e1dbd6; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; color: var(--dark); background: #fdfdfd; }
+        .form-group input:focus { border-color: var(--primary); outline: none; background: white; }
+        .btn-order { width: 100%; background: #25D366; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; font-family: inherit; transition: background 0.2s; }
+        .btn-order:hover { background: #128C7E; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ppuri</h1>
+    <div class="subtitle">Selecciona tus platos semanales y realiza tu pedido directo a WhatsApp</div>
+    <div id="menu-container">Cargando nuestro menú...</div>
+</div>
+
+<!-- Barra de Pedido y Domicilio -->
+<div class="cart-bar" id="cart-bar">
+    <div class="cart-container">
+        <div class="form-group">
+            <label for="txt-nombre">NOMBRE COMPLETO *</label>
+            <input type="text" id="txt-nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="txt-direccion">DIRECCIÓN Y DOMICILIO DE ENTREGA *</label>
+            <input type="text" id="txt-direccion" placeholder="Calle, número, piso/depto, barrio" required>
+        </div>
+        <button class="btn-order" onclick="enviarWhatsApp()">
+            Enviar Pedido a WhatsApp (<span id="cart-total">$0</span>)
+        </button>
+    </div>
+</div>
+
+<script>
+    // ==========================================
+    // ⚠️ CONFIGURACIÓN: CONFIGURA TU TELÉFONO AQUÍ
+    // ==========================================
+    const TELEFONO = "2994711828"; // Tu número con código de país, sin espacios ni el signo +
+
+    let menuData = [];
+    let carrito = {};
+
+    async function cargarMenu() {
+        try {
+            const respuesta = await fetch(`menu.json?v=${Date.now()}`);
+            if (!respuesta.ok) throw new Error("No se pudo leer el archivo menu.json");
+            menuData = await respuesta.json();
+            renderizarMenu();
+        } catch (error) {
+            document.getElementById('menu-container').innerHTML = `<p style="color:var(--primary); text-align:center;">Error al cargar el menú. Asegúrate de que menu.json esté en la misma carpeta.</p>`;
+            console.error(error);
+        }
+    }
+
+    function renderizarMenu() {
+        const container = document.getElementById('menu-container');
+        container.innerHTML = '';
+        
+        menuData.forEach(plato => {
+            const item = document.createElement('div');
+            item.className = 'menu-item';
+            item.innerHTML = `
+                <div class="info">
+                    <div class="name">${plato.nombre}</div>
+                    <div class="description">${plato.descripcion}</div>
+                </div>
+                <div class="right-side">
+                    <div class="price">$${plato.precio}</div>
+                    <button class="btn-add" onclick="agregarAlCarrito(${plato.id})">Agregar</button>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    }
+
+    function agregarAlCarrito(id) {
+        if (carrito[id]) {
+            carrito[id]++;
+        } else {
+            carrito[id] = 1;
+        }
+        actualizarInterfazCarrito();
+    }
+
+    function actualizarInterfazCarrito() {
+        let total = 0;
+        let itemsTotales = 0;
+
+        menuData.forEach(plato => {
+            if (carrito[plato.id]) {
+                total += plato.precio * carrito[plato.id];
+                itemsTotales += carrito[plato.id];
+            }
+        });
+
+        const cartBar = document.getElementById('cart-bar');
+        if (itemsTotales > 0) {
+            cartBar.style.display = 'block';
+            document.getElementById('cart-total').innerText = `$${total}`;
+        } else {
+            cartBar.style.display = 'none';
+        }
+    }
+
+    function enviarWhatsApp() {
+        const nombre = document.getElementById('txt-nombre').value.trim();
+        const direccion = document.getElementById('txt-direccion').value.trim();
+
+        if (!nombre || !direccion) {
+            alert("Por favor, ingresa tu nombre y domicilio antes de continuar.");
+            return;
+        }
+
+        let textoPedido = `*¡NUEVO PEDIDO - PPURI!*\n\n`;
+        textoPedido += `👤 *Cliente:* ${nombre}\n`;
+        textoPedido += `📍 *Domicilio:* ${direccion}\n\n`;
+        textoPedido += `🛒 *Detalle del Pedido:*\n`;
+
+        let total = 0;
+        menuData.forEach(plato => {
+            if (carrito[plato.id]) {
+                const subtotal = plato.precio * carrito[plato.id];
+                textoPedido += `• ${carrito[plato.id]}x ${plato.nombre} ($${plato.precio} c/u) -> *$${subtotal}*\n`;
+                total += subtotal;
+            }
+        });
+
+        textoPedido += `\n💰 *TOTAL A PAGAR:* *$${total}*`;
+
+        const urlFinal = `https://wa.me{TELEFONO}?text=${encodeURIComponent(textoPedido)}`;
+        window.open(urlFinal, '_blank');
+    }
+
+    window.onload = cargarMenu;
+</script>
+</body>
+</html>
