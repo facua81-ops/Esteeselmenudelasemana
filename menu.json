@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nombre": "Plato Ejemplo 1",
+    "descripcion": "Descripción elegante y corta del plato de esta semana.",
+    "precio": 1500
+  },
+  {
+    "id": 2,
+    "nombre": "Plato Ejemplo 2",
+    "descripcion": "Descripción elegante y corta del plato de esta semana.",
+    "precio": 1400
+  },
+  {
+    "id": 3,
+    "nombre": "Plato Ejemplo 3",
+    "descripcion": "Descripción elegante y corta del plato de esta semana.",
+    "precio": 1300
+  },
+  {
+    "id": 4,
+    "nombre": "Plato Ejemplo 4",
+    "descripcion": "Descripción elegante y corta del plato de esta semana.",
+    "precio": 1200
+  },
+  {
+    "id": 5,
+    "nombre": "Plato Ejemplo 5",
+    "descripcion": "Descripción elegante y corta del plato de esta semana.",
+    "precio": 1250
+  },
+  {
+    "id": 6,
+    "nombre": "Plato Ejemplo 6",
+    "descripcion": "Descripción elegante y corta del plato de esta semana.",
+    "precio": 1100
+  }
+]
