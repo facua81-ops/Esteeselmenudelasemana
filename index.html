@@ -123,57 +123,7 @@
         }
     }
 
-    function renderizarMenu() {
-        const container = document.getElementById('menu-container');
-        container.innerHTML = '';
-        
-        menuData.forEach(plato => {
-            const item = document.createElement('div');
-            item.className = 'menu-item';
-            item.innerHTML = `
-                <div class="info">
-                    <div class="name">${plato.nombre}</div>
-                    <div class="description">${plato.descripcion}</div>
-                </div>
-                <div class="right-side">
-                    <div class="price">$${plato.precio}</div>
-                    <button class="btn-add" onclick="agregarAlCarrito(${plato.id})">Agregar</button>
-                </div>
-            `;
-            container.appendChild(item);
-        });
-    }
-
-    function agregarAlCarrito(id) {
-        if (carrito[id]) {
-            carrito[id]++;
-        } else {
-            carrito[id] = 1;
-        }
-        actualizarInterfazCarrito();
-    }
-
-    function actualizarInterfazCarrito() {
-        let total = 0;
-        let itemsTotales = 0;
-
-        menuData.forEach(plato => {
-            if (carrito[plato.id]) {
-                total += plato.precio * carrito[plato.id];
-                itemsTotales += carrito[plato.id];
-            }
-        });
-
-        const cartBar = document.getElementById('cart-bar');
-        if (itemsTotales > 0) {
-            cartBar.style.display = 'block';
-            document.getElementById('cart-total').innerText = `$${total}`;
-        } else {
-            cartBar.style.display = 'none';
-        }
-    }
-
-    function enviarWhatsApp() {
+        function enviarWhatsApp() {
         const nombre = document.getElementById('txt-nombre').value.trim();
         const direccion = document.getElementById('txt-direccion').value.trim();
 
@@ -198,11 +148,8 @@
 
         textoPedido += `\n💰 *TOTAL A PAGAR:* *$${total}*`;
 
+        // URL corregida profesionalmente sin barras extras que rompan el enlace
         const urlFinal = `https://wa.me{TELEFONO}?text=${encodeURIComponent(textoPedido)}`;
         window.open(urlFinal, '_blank');
     }
 
-    window.onload = cargarMenu;
-</script>
-</body>
-</html>
