@@ -7,7 +7,7 @@
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ppuri - Menú Semanal</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     
     <style>
@@ -49,12 +49,11 @@
         .right-side { text-align: right; min-width: 110px; margin-left: 10px; }
         .price { font-size: 17px; font-weight: 700; color: #801d1d; margin-bottom: 12px; }
         
+        /* Selector de cantidades optimizado siempre visible */
         .counter-container { display: inline-flex; align-items: center; background: #fdf2f2; border-radius: 24px; padding: 2px; }
         .btn-counter { background: transparent; color: #801d1d; border: none; width: 32px; height: 32px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: 0.2s; }
         .btn-counter:hover { background: #801d1d; color: white; }
         .qty-display { min-width: 24px; text-align: center; font-weight: 700; font-size: 14px; color: #221919; }
-        .btn-add { background: #fdf2f2; color: #801d1d; border: none; padding: 8px 16px; border-radius: 24px; font-weight: 600; cursor: pointer; font-size: 13px; transition: all 0.2s ease; }
-        .btn-add:hover { background: #801d1d; color: white; }
         
         .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); padding: 20px; display: none; z-index: 1000; border-top: 1px solid #f1eeeb; }
         .cart-container { max-width: 550px; margin: 0 auto; }
@@ -132,11 +131,15 @@
             item.className = 'menu-item';
             
             const cantidad = carrito[plato.id] || 0;
-            let botonHtml = `<button class="btn-add" onclick="agregarAlCarrito(${plato.id})">Agregar</button>`;
             
-            if (cantidad > 0) {
-                botonHtml = `
-                    <div class="counter-container">
-                        <button class="btn-counter" onclick="quitarDelCarrito(${plato.id})">-</button>
-                        <span class="qty-display">${cantidad}</span>
+            // Los botones + y - junto al número de cantidad ahora aparecen siempre visibles por defecto
+            let botonHtml = `
+                <div class="counter-container">
+                    <button class="btn-counter" onclick="quitarDelCarrito(${plato.id})">-</button>
+                    <span class="qty-display">${cantidad}</span>
+                    <button class="btn-counter" onclick="agregarAlCarrito(${plato.id})">+</button>
+                </div>
+            `;
+
+            // Estructura limpia respetando tus platos reales del archivo menu.json y sumando el logo mini
 
