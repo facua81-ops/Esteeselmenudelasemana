@@ -20,7 +20,7 @@
         }
 
         body { 
-            font-family: 'Segoe UI', system-ui, sans-serif; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #faf8f6; 
             margin: 0; 
             padding: 0; 
@@ -34,7 +34,7 @@
         h1 { text-align: center; color: #221919; margin: 0 0 8px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
         .subtitle { text-align: center; color: #8c8282; font-size: 14px; margin-bottom: 35px; font-weight: 400; }
         
-        /* Modificación para integrar el mini logo alineado */
+        /* Flexbox adaptado para integrar el mini logo al lado de la información del plato */
         .menu-item { border-bottom: 1px solid #f1eeeb; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
         .menu-item:last-child { border-bottom: none; }
         
@@ -42,18 +42,19 @@
         .info { flex: 1; }
         
         /* Estilo para el logo miniatura al lado de tus platos */
-        .logo-mini { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #d4af37; box-shadow: 0 2px 4px rgba(0,0,0,0.08); margin-top: 2px; }
+        .logo-mini { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid #d4af37; box-shadow: 0 2px 4px rgba(0,0,0,0.08); margin-top: 2px; }
         
         .name { font-weight: 700; font-size: 17px; color: #221919; }
         .description { font-size: 13.5px; color: #736969; margin-top: 6px; line-height: 1.5; font-weight: 400; }
         .right-side { text-align: right; min-width: 110px; margin-left: 10px; }
         .price { font-size: 17px; font-weight: 700; color: #801d1d; margin-bottom: 12px; }
         
-        /* Selector de cantidades optimizado siempre visible */
         .counter-container { display: inline-flex; align-items: center; background: #fdf2f2; border-radius: 24px; padding: 2px; }
         .btn-counter { background: transparent; color: #801d1d; border: none; width: 32px; height: 32px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: 0.2s; }
         .btn-counter:hover { background: #801d1d; color: white; }
         .qty-display { min-width: 24px; text-align: center; font-weight: 700; font-size: 14px; color: #221919; }
+        .btn-add { background: #fdf2f2; color: #801d1d; border: none; padding: 8px 16px; border-radius: 24px; font-weight: 600; cursor: pointer; font-size: 13px; transition: all 0.2s ease; }
+        .btn-add:hover { background: #801d1d; color: white; }
         
         .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); padding: 20px; display: none; z-index: 1000; border-top: 1px solid #f1eeeb; }
         .cart-container { max-width: 550px; margin: 0 auto; }
@@ -68,10 +69,10 @@
 </head>
 <body>
 
-    <!-- Encabezado con tu foto de fondo con la P mayúscula corregida -->
-    <header style="position: relative; text-align: center; padding: 60px 20px; background-image: linear-gradient(rgba(45, 55, 72, 0.75), rgba(45, 55, 72, 0.75)), url('Portada.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+    <!-- Encabezado con tu foto de fondo 'portada.jpg' y tu logo circular flotante con borde dorado -->
+    <header style="position: relative; text-align: center; padding: 60px 20px; background-image: linear-gradient(rgba(45, 55, 72, 0.75), rgba(45, 55, 72, 0.75)), url('portada.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
         <div style="max-width: 600px; margin: 0 auto; position: relative; z-index: 2;">
-            <img src="image_71655ed7.png" alt="Ppuri Logo" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #d4af37; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease;">
+            <img src="Portada.jpg" alt="Ppuri Logo" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #d4af37; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease;">
             <h1 style="color: #ffffff; margin-top: 15px; font-size: 34px; font-weight: 700; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Nuestro Menú de la Semana</h1>
             <p style="color: #ff9e9e; font-size: 15px; font-weight: 700; margin-top: 5px; margin-bottom: 0; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">Sabor directo a tu dirección</p>
         </div>
@@ -99,7 +100,7 @@
         </div>
     </div>
 
-    <!-- 🟢 BOTÓN FLOTANTE DIRECTO DE WHATSAPP -->
+    <!-- 🟢 BOTÓN FLOTANTE DIRECTO DE WHATSAPP CONECTADO A TU TELÉFONO -->
     <a href="https://wa.me" style="position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background-color: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; text-decoration: none; transition: transform 0.2s ease;">
         <svg viewBox="0 0 24 24" style="width: 32px; height: 32px; fill: white;">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.863-9.73.001-2.595-1.013-5.035-2.855-6.877C16.637 2.155 14.193 1.14 11.602 1.14c-5.441 0-9.865 4.372-9.867 9.734-.002 1.748.498 3.454 1.446 4.994l-.995 3.637 3.737-.971zm12.374-7.202c-.313-.156-1.854-.914-2.128-1.014-.275-.1-.474-.15-.674.15-.2.3-.775.976-.95 1.176-.175.2-.35.225-.663.069-.313-.156-1.322-.486-2.518-1.552-.93-.829-1.558-1.854-1.74-2.165-.183-.312-.02-.481.136-.636.141-.14.313-.365.47-.547.156-.182.208-.312.313-.52.104-.208.052-.39-.026-.547-.078-.156-.674-1.623-.923-2.223-.243-.585-.49-.505-.674-.515-.174-.01-.373-.01-.573-.01-.2 0-.525.075-.8.375-.276.3-.105.976-.105.976s.011.004.011.011c.071.69.34 2.057 1.448 3.49 1.154 1.492 2.656 2.454 4.148 2.923.864.27 1.637.29 2.247.2 1.055-.158 2.128-.868 2.428-1.674.3-.807.3-1.498.212-1.648-.09-.15-.325-.25-.638-.406z"/>
@@ -131,17 +132,10 @@
             item.className = 'menu-item';
             
             const cantidad = carrito[plato.id] || 0;
+            let botonHtml = `<button class="btn-add" onclick="agregarAlCarrito(${plato.id})">Agregar</button>`;
             
-            let botonHtml = `
-                <div class="counter-container">
-                    <button class="btn-counter" onclick="quitarDelCarrito(${plato.id})">-</button>
-                    <span class="qty-display">${cantidad}</span>
-                    <button class="btn-counter" onclick="agregarAlCarrito(${plato.id})">+</button>
-                </div>
-            `;
-
-            item.innerHTML = `
-                <div class="info-layout">
-                    <img src="image_71655ed7.png" alt="Ppuri" class="logo-mini">
-                    <div class="info">
+            if (cantidad > 0) {
+                botonHtml = `
+                    <div class="counter-container">
+                        <button class="btn-counter" onclick="quitarDelCarrito(${plato.id})">-</button>
 
