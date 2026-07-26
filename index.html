@@ -62,26 +62,86 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Ppuri</h1>
-    <div class="subtitle">Selecciona tus platos semanales y realiza tu pedido directo a WhatsApp</div>
-    <div id="menu-container">Cargando nuestro menú...</div>
-</div>
-<div class="cart-bar" id="cart-bar">
-    <div class="cart-container">
-        <div class="form-group">
-            <label for="txt-nombre">NOMBRE COMPLETO *</label>
-            <input type="text" id="txt-nombre" placeholder="Tu nombre" required>
+<div id="menu-container">
+    <!-- Plato 1 -->
+    <div class="menu-item" style="display: flex; align-items: center; gap: 12px;">
+        <img src="image_71655ed7.png" alt="Ppuri" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #d4af37;">
+        <div class="info" style="flex: 1;">
+            <div class="name">Canelones de estacion</div>
+            <div class="description">Temporada de espinacas.</div>
         </div>
-        <div class="form-group">
-            <label for="txt-direccion">DIRECCIÓN Y DOMICILIO DE ENTREGA *</label>
-            <input type="text" id="txt-direccion" placeholder="Calle, número, piso/depto, barrio" required>
+        <div class="right-side">
+            <div class="price">$18000</div>
+            <div id="btn-container-1"><button class="btn-add" onclick="agregarAlCarrito(1)">Agregar</button></div>
         </div>
-        <button class="btn-order" onclick="enviarWhatsApp()">
-            Enviar Pedido a WhatsApp (<span id="cart-total">$0</span>)
-        </button>
+    </div>
+
+    <!-- Plato 2 -->
+    <div class="menu-item" style="display: flex; align-items: center; gap: 12px;">
+        <img src="image_71655ed7.png" alt="Ppuri" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #d4af37;">
+        <div class="info" style="flex: 1;">
+            <div class="name">Ñoquis tradicionales </div>
+            <div class="description">Papa, huevo, harina para la masa.</div>
+        </div>
+        <div class="right-side">
+            <div class="price">$14000</div>
+            <div id="btn-container-2"><button class="btn-add" onclick="agregarAlCarrito(2)">Agregar</button></div>
+        </div>
+    </div>
+
+    <!-- Plato 3 -->
+    <div class="menu-item" style="display: flex; align-items: center; gap: 12px;">
+        <img src="image_71655ed7.png" alt="Ppuri" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #d4af37;">
+        <div class="info" style="flex: 1;">
+            <div class="name">Sorrentinos Ppuri por docena</div>
+            <div class="description">Tomates deshidratados, queso gouda y berenjenas.</div>
+        </div>
+        <div class="right-side">
+            <div class="price">$14000</div>
+            <div id="btn-container-3"><button class="btn-add" onclick="agregarAlCarrito(3)">Agregar</button></div>
+        </div>
+    </div>
+
+    <!-- Plato 4 -->
+    <div class="menu-item" style="display: flex; align-items: center; gap: 12px;">
+        <img src="image_71655ed7.png" alt="Ppuri" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #d4af37;">
+        <div class="info" style="flex: 1;">
+            <div class="name">Ensalada Ppuri</div>
+            <div class="description">Remolacha asada al rescoldo, arroz para sushi, maiz frito, tofu condimentado, huevo pochado.</div>
+        </div>
+        <div class="right-side">
+            <div class="price">$16000</div>
+            <div id="btn-container-4"><button class="btn-add" onclick="agregarAlCarrito(4)">Agregar</button></div>
+        </div>
+    </div>
+
+    <!-- Plato 5 -->
+    <div class="menu-item" style="display: flex; align-items: center; gap: 12px;">
+        <img src="image_71655ed7.png" alt="Ppuri" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #d4af37;">
+        <div class="info" style="flex: 1;">
+            <div class="name">Empanadas cortadas a cuchillo por docena</div>
+            <div class="description">Corte tiernizadocortado a cuchillo en coccion lenta, masa casera.</div>
+        </div>
+        <div class="right-side">
+            <div class="price">$35000</div>
+            <div id="btn-container-5"><button class="btn-add" onclick="agregarAlCarrito(5)">Agregar</button></div>
+        </div>
+    </div>
+
+    <!-- Plato 6 -->
+    <div class="menu-item" style="display: flex; align-items: center; gap: 12px;">
+        <img src="image_71655ed7.png" alt="Ppuri" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #d4af37;">
+        <div class="info" style="flex: 1;">
+            <div class="name">Rotolos de calabaza por porcion de 4 unidades</div>
+            <div class="description">Masa al huevo, cabuttia,cebolla, queso .</div>
+        </div>
+        <div class="right-side">
+            <div class="price">$15000</div>
+            <div id="btn-container-6"><button class="btn-add" onclick="agregarAlCarrito(6)">Agregar</button></div>
+        </div>
     </div>
 </div>
+
 
 <script>
     const TELEFONO = "5492994711828";
