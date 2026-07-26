@@ -124,7 +124,8 @@
                 `;
             }
 
-            item.innerHTML = '<div class="info"><div class="name">' + plato.nombre + '</div><div class="description">' + plato.descripcion + '</div></div><div class="right-side"><div class="price">$' + plato.precio + '</div><div id="btn-container-' + plato.id + '">' + botonHtml + '</div></div>';
+            item.innerHTML = '<div class="info-layout"><img src="image_71655ed7.png" alt="Ppuri" class="logo-mini"><div class="info"><div class="name">' + plato.nombre + '</div><div class="description">' + plato.descripcion + '</div></div></div><div class="right-side"><div class="price">$' + plato.precio + '</div><div id="btn-container-' + plato.id + '">' + botonHtml + '</div></div>';
+
             container.appendChild(item);
         });
     }
