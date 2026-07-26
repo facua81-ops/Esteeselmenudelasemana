@@ -2,58 +2,199 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ppuri - Menú de la Semana</title>
+    <meta name="viewport" content="width=device-width, initial-scale=4.0">
+    <title>Este es el menú de la semana</title>
 </head>
-<!-- Mantenemos el fondo de mantel cuadriculado sutil que elegiste -->
-<body style="margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; background-color: #f7fafc; background-image: linear-gradient(90deg, rgba(230,235,240,0.5) 1px, transparent 1px), linear-gradient(rgba(230,235,240,0.5) 1px, transparent 1px); background-size: 20px 20px; color: #2d3748;">
+<body style=<!-- Sección del Encabezado / Logo Profesional -->
+<header style="text-align: center; padding: 30px 10px; background-color: #ffffff;">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <img src="image_71655ed7.png" alt="Ppuri Logo" style="width: 180px; height: auto; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333333; margin-top: 15px; font-size: 28px; letter-spacing: 1px;">Nuestro Menú de la Semana</h1>
+        <p style="font-family: 'Segoe UI', sans-serif; color: #777777; font-size: 16px; margin-top: 5px;">Sabor directo a tu dirección</p>
+    </div>
+</header>
+<hr style="border: 0; height: 1px; background: #e0e0e0; margin: 0;">
 
-    <!-- ACÁ SE COLOCA TU FOTO: Cambiamos el fondo blanco de antes por tu imagen 'portada.jpg' -->
-    <header style="position: relative; text-align: center; padding: 50px 20px; background-image: linear-gradient(rgba(45, 55, 72, 0.7), rgba(45, 55, 72, 0.7)), url('portada.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <div style="max-width: 600px; margin: 0 auto; position: relative; z-index: 2;">
-            
-            <!-- Tu Logo Ppuri sigue acá, flotando sobre tu foto con su borde dorado -->
-            <img src="logo-ppuri.jpg" alt="Ppuri Logo" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid #d4af37; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);">
-            
-            <!-- El título ahora es blanco para que se lea perfectamente sobre tu foto -->
-            <h1 style="color: #ffffff; margin-top: 20px; font-size: 30px; font-weight: 700; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Menú de la Semana</h1>
-            
-            <!-- Subtítulo en un tono claro para combinar con el fondo -->
-            <p style="color: #ff9e9e; font-size: 16px; font-weight: 600; margin: 5px 0 0 0; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">Sabor Único & Tradición</p>
-        </div>
-    </header>
-
-    <!-- TODO LO DE ABAJO QUEDA EXACTAMENTE IGUAL AL MODELO ANTERIOR -->
-    <main style="max-width: 500px; margin: 30px auto; padding: 0 20px;">
+    <!-- El resto del contenido de tu menú va acá abajo -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ppuri - Menú Semanal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf8f6; margin: 0; padding: 20px; color: #221919; }
+        .container { max-width: 550px; margin: 0 auto; background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(34, 25, 25, 0.04); padding-bottom: 240px; }
+        h1 { text-align: center; color: #221919; margin: 0 0 8px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+        .subtitle { text-align: center; color: #8c8282; font-size: 14px; margin-bottom: 35px; font-weight: 400; }
+        .menu-item { border-bottom: 1px solid #f1eeeb; padding: 20px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+        .menu-item:last-child { border-bottom: none; }
+        .info { flex: 1; }
+        .name { font-weight: 700; font-size: 17px; color: #221919; }
+        .description { font-size: 13.5px; color: #736969; margin-top: 6px; line-height: 1.5; font-weight: 400; }
+        .right-side { text-align: right; min-width: 110px; }
+        .price { font-size: 17px; font-weight: 700; color: #801d1d; margin-bottom: 12px; }
         
-        <!-- Bloque de Información de Entrega con borde Borgoña -->
-        <section style="background-color: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border-left: 4px solid #792121; margin-bottom: 25px;">
-            <h2 style="margin-top: 0; font-size: 16px; color: #792121;">📍 Detalles de Envío</h2>
-            <p style="margin: 5px 0; font-size: 15px; color: #4a5568;"><strong>Dirección de entrega:</strong> [Ingresá tu dirección acá]</p>
-            <p style="margin: 5px 0; font-size: 15px; color: #4a5568;"><strong>Teléfono de Pedidos:</strong> [Ingresá tu número]</p>
-        </section>
+        .counter-container { display: inline-flex; align-items: center; background: #fdf2f2; border-radius: 24px; padding: 2px; }
+        .btn-counter { background: transparent; color: #801d1d; border: none; width: 32px; height: 32px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: 0.2s; }
+        .btn-counter:hover { background: #801d1d; color: white; }
+        .qty-display { min-width: 24px; text-align: center; font-weight: 700; font-size: 14px; color: #221919; }
+        .btn-add { background: #fdf2f2; color: #801d1d; border: none; padding: 8px 16px; border-radius: 24px; font-weight: 600; cursor: pointer; font-size: 13px; transition: all 0.2s ease; }
+        .btn-add:hover { background: #801d1d; color: white; }
+        
+        .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); padding: 20px; display: none; z-index: 1000; border-top: 1px solid #f1eeeb; }
+        .cart-container { max-width: 550px; margin: 0 auto; }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 11px; font-weight: 700; color: #221919; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .form-group input { width: 100%; padding: 12px; border: 1px solid #e1dbd6; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; color: #221919; background: #fdfdfd; }
+        .form-group input:focus { border-color: #801d1d; outline: none; background: white; }
+        
+        .btn-order { display: block; width: 100%; box-sizing: border-box; background: #25D366; color: white; text-align: center; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+        .btn-order:hover { background: #128C7E; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Ppuri</h1>
+    <div class="subtitle">Selecciona tus platos semanales y realiza tu pedido directo a WhatsApp</div>
+    <div id="menu-container">Cargando nuestro menú...</div>
+</div>
+<div class="cart-bar" id="cart-bar">
+    <div class="cart-container">
+        <div class="form-group">
+            <label for="txt-nombre">NOMBRE COMPLETO *</label>
+            <input type="text" id="txt-nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="txt-direccion">DIRECCIÓN Y DOMICILIO DE ENTREGA *</label>
+            <input type="text" id="txt-direccion" placeholder="Calle, número, piso/depto, barrio" required>
+        </div>
+        <button class="btn-order" onclick="enviarWhatsApp()">
+            Enviar Pedido a WhatsApp (<span id="cart-total">$0</span>)
+        </button>
+    </div>
+</div>
 
-        <!-- Sección de Platos Disponibles -->
-        <section style="background-color: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); margin-bottom: 25px;">
-            <h2 style="margin-top: 0; margin-bottom: 20px; font-size: 20px; color: #2d3748; border-bottom: 2px solid #edf2f7; padding-bottom: 10px;">🍽️ Platos Disponibles</h2>
-            
-            <!-- Plato 1 -->
-            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 15px;">
-                <span style="font-weight: 600; color: #2d3748; font-size: 16px;">Plato Ejecutivo del Día</span>
-                <span style="font-weight: 700; color: #792121; font-size: 16px;">$0.00</span>
-            </div>
-            
-            <!-- Plato 2 -->
-            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 15px;">
-                <span style="font-weight: 600; color: #2d3748; font-size: 16px;">Opción Saludable / Ensalada</span>
-                <span style="font-weight: 700; color: #792121; font-size: 16px;">$0.00</span>
-            </div>
-        </section>
+<script>
+    const TELEFONO = "5492994711828";
+    let menuData = [];
+    let carrito = {};
 
-        <!-- Botón de Pedidos de WhatsApp usando el Borgoña -->
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="https://wa.me" style="display: inline-block; background-color: #792121; color: #ffffff; padding: 14px 30px; border-radius: 30px; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(121, 33, 33, 0.3); transition: all 0.2s;">
-                📱 Hacer Pedido por WhatsApp
+    async function cargarMenu() {
+        try {
+            const respuesta = await fetch("menu.json?v=" + Date.now());
+            if (!respuesta.ok) throw new Error("No se pudo leer el archivo menu.json");
+            menuData = await respuesta.json();
+            renderizarMenu();
+        } catch (error) {
+            document.getElementById('menu-container').innerHTML = '<p style="color:#801d1d; text-align:center;">Error al cargar el menú. Asegúrate de que menu.json esté en la misma carpeta y subido a Netlify.</p>';
+            console.error(error);
+        }
+    }
+
+    function renderizarMenu() {
+        const container = document.getElementById('menu-container');
+        container.innerHTML = '';
+        menuData.forEach(plato => {
+            const item = document.createElement('div');
+            item.className = 'menu-item';
+            
+            const cantidad = carrito[plato.id] || 0;
+            let botonHtml = `<button class="btn-add" onclick="agregarAlCarrito(${plato.id})">Agregar</button>`;
+            
+            if (cantidad > 0) {
+                botonHtml = `
+                    <div class="counter-container">
+                        <button class="btn-counter" onclick="quitarDelCarrito(${plato.id})">-</button>
+                        <span class="qty-display">${cantidad}</span>
+                        <button class="btn-counter" onclick="agregarAlCarrito(${plato.id})">+</button>
+                    </div>
+                `;
+            }
+
+            item.innerHTML = '<div class="info"><div class="name">' + plato.nombre + '</div><div class="description">' + plato.descripcion + '</div></div><div class="right-side"><div class="price">$' + plato.precio + '</div><div id="btn-container-' + plato.id + '">' + botonHtml + '</div></div>';
+            container.appendChild(item);
+        });
+    }
+
+    function agregarAlCarrito(id) {
+        if (carrito[id]) { carrito[id]++; } else { carrito[id] = 1; }
+        actualizarInterfazCarrito();
+        renderizarMenu();
+    }
+
+    function quitarDelCarrito(id) {
+        if (carrito[id]) {
+            carrito[id]--;
+            if (carrito[id] === 0) {
+                delete carrito[id];
+            }
+        }
+        actualizarInterfazCarrito();
+        renderizarMenu();
+    }
+
+    function actualizarInterfazCarrito() {
+        let total = 0;
+        let itemsTotales = 0;
+        menuData.forEach(plato => {
+            if (carrito[plato.id]) {
+                total += plato.precio * carrito[plato.id];
+                itemsTotales += carrito[plato.id];
+            }
+        });
+        const cartBar = document.getElementById('cart-bar');
+        if (itemsTotales > 0) {
+            cartBar.style.display = 'block';
+            document.getElementById('cart-total').innerText = '$' + total;
+        } else {
+            cartBar.style.display = 'none';
+        }
+    }
+
+    function enviarWhatsApp() {
+        const nombre = document.getElementById('txt-nombre').value.trim();
+        const direccion = document.getElementById('txt-direccion').value.trim();
+        if (!nombre || !direccion) { 
+            alert("Por favor, ingresa tu nombre y domicilio antes de continuar."); 
+            return; 
+        }
+        
+        let textoPedido = "*¡NUEVO PEDIDO - PPURI!*\n\n👤 *Cliente:* " + nombre + "\n📍 *Domicilio:* " + direccion + "\n\n🛒 *Detalle del Pedido:*\n";
+        let total = 0;
+
+        menuData.forEach(plato => {
+            if (carrito[plato.id]) {
+                const subtotal = plato.precio * carrito[plato.id];
+                textoPedido += "• " + carrito[plato.id] + "x " + plato.nombre + " ($" + plato.precio + " c/u) -> *$" + subtotal + "*\n";
+                total += subtotal;
+            }
+        });
+        textoPedido += "\n💰 *TOTAL A PAGAR:* *$" + total + "*";
+        
+        // Formato oficial universal sin intermediarios
+        const urlFinal = "https://wa.me/" + TELEFONO + "?text=" + encodeURIComponent(textoPedido);
+        
+        // Crea un enlace dinámico en memoria en el preciso instante del clic (Infalible contra bloqueos)
+        const linkTemporal = document.createElement("a");
+        linkTemporal.href = urlFinal;
+        linkTemporal.target = "_blank"; 
+        linkTemporal.rel = "noopener noreferrer";
+        
+        document.body.appendChild(linkTemporal);
+        linkTemporal.click();
+        document.body.removeChild(linkTemporal);
+    }
+
+    window.onload = cargarMenu;
+</script>
+</body>
 </html>
 
 </body>
