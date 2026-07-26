@@ -68,10 +68,10 @@
 </head>
 <body>
 
-    <!-- Encabezado con tu foto de fondo 'portada.jpg' y tu logo circular impecable -->
-    <header style="position: relative; text-align: center; padding: 60px 20px; background-image: linear-gradient(rgba(45, 55, 72, 0.75), rgba(45, 55, 72, 0.75)), url('portada.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+    <!-- Encabezado con tu foto de fondo con la P mayúscula corregida -->
+    <header style="position: relative; text-align: center; padding: 60px 20px; background-image: linear-gradient(rgba(45, 55, 72, 0.75), rgba(45, 55, 72, 0.75)), url('Portada.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
         <div style="max-width: 600px; margin: 0 auto; position: relative; z-index: 2;">
-            <img src="Portada.jpg" alt="Ppuri Logo" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #d4af37; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease;">
+            <img src="image_71655ed7.png" alt="Ppuri Logo" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #d4af37; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease;">
             <h1 style="color: #ffffff; margin-top: 15px; font-size: 34px; font-weight: 700; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Nuestro Menú de la Semana</h1>
             <p style="color: #ff9e9e; font-size: 15px; font-weight: 700; margin-top: 5px; margin-bottom: 0; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">Sabor directo a tu dirección</p>
         </div>
@@ -132,7 +132,6 @@
             
             const cantidad = carrito[plato.id] || 0;
             
-            // Los botones + y - junto al número de cantidad ahora aparecen siempre visibles por defecto
             let botonHtml = `
                 <div class="counter-container">
                     <button class="btn-counter" onclick="quitarDelCarrito(${plato.id})">-</button>
@@ -141,5 +140,8 @@
                 </div>
             `;
 
-            // Estructura limpia respetando tus platos reales del archivo menu.json y sumando el logo mini
+            item.innerHTML = `
+                <div class="info-layout">
+                    <img src="image_71655ed7.png" alt="Ppuri" class="logo-mini">
+                    <div class="info">
 
