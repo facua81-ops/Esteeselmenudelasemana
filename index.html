@@ -109,33 +109,52 @@
 
 <script>
     const TELEFONO = "5492994711828";
-    let menuData = [];
+    
+    // Tus 6 platos reales integrados de forma fija para evitar problemas de carga
+    let menuData = [
+      {
+        "id": 1,
+        "nombre": "Canelones de estacion",
+        "descripcion": "Temporada de espinacas.",
+        "precio": 18000
+      },
+      {
+        "id": 2,
+        "nombre": "Ñoquis tradicionales ",
+        "descripcion": "Papa, huevo, harina para la masa.",
+        "precio": 14000
+      },
+      {
+        "id": 3,
+        "nombre": "Sorrentinos Ppuri por docena",
+        "descripcion": "Tomates deshidratados, queso gouda y berenjenas.",
+        "precio": 14000
+      },
+      {
+        "id": 4,
+        "nombre": "Ensalada Ppuri",
+        "descripcion": "Remolacha asada al rescoldo, arroz para sushi, maiz frito, tofu condimentado, huevo pochado.",
+        "precio": 16000
+      },
+      {
+        "id": 5,
+        "nombre": "Empanadas cortadas a cuchillo por docena",
+        "descripcion": "Corte tiernizadocortado a cuchillo en coccion lenta, masa casera.",
+        "precio": 35000
+      },
+      {
+        "id": 6,
+        "nombre": "Rotolos de calabaza por porcion de 4 unidades",
+        "descripcion": "Masa al huevo, cabuttia,cebolla, queso .",
+        "precio": 15000
+      }
+    ];
+    
     let carrito = {};
 
-    async function cargarMenu() {
-        try {
-            const respuesta = await fetch("menu.json?v=" + Date.now());
-            if (!respuesta.ok) throw new Error("No se pudo leer el archivo menu.json");
-            menuData = await respuesta.json();
-            renderizarMenu();
-        } catch (error) {
-            document.getElementById('menu-container').innerHTML = '<p style="color:#801d1d; text-align:center;">Error al cargar el menú. Asegúrate de que menu.json esté en la misma carpeta y subido a Netlify.</p>';
-            console.error(error);
-        }
+    function cargarMenu() {
+        renderizarMenu();
     }
 
-    function renderizarMenu() {
-        const container = document.getElementById('menu-container');
-        container.innerHTML = '';
-        menuData.forEach(plato => {
-            const item = document.createElement('div');
-            item.className = 'menu-item';
-            
-            const cantidad = carrito[plato.id] || 0;
-            let botonHtml = `<button class="btn-add" onclick="agregarAlCarrito(${plato.id})">Agregar</button>`;
-            
-            if (cantidad > 0) {
-                botonHtml = `
-                    <div class="counter-container">
-                        <button class="btn-counter" onclick="quitarDelCarrito(${plato.id})">-</button>
+
 
