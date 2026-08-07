@@ -19,10 +19,8 @@
         .menu-item:last-child { border-bottom: none; }
         .info { flex: 1; }
         
-        /* Encabezado dinámico si tiene o no fotos */
-        .clickable-header { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 4px; }
-        .clickable-header.has-photos { cursor: pointer; }
-        .clickable-header.has-photos:hover .name { color: #801d1d; text-decoration: underline; }
+        .clickable-header { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+        .clickable-header:hover .name { color: #801d1d; text-decoration: underline; }
         .name { font-weight: 700; font-size: 17px; color: #221919; transition: color 0.2s; margin: 0; }
         .cam-icon { font-size: 12px; color: #801d1d; background: #fdf2f2; padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap; }
         
@@ -120,7 +118,6 @@
         }
     }
 
-    // Renderiza el menú de forma segura sin importar si hay fotos o no en el json
     function renderizarMenu() {
         const container = document.getElementById('menu-container');
         container.innerHTML = '';
@@ -141,20 +138,30 @@
                 `;
             }
 
-            // Verifica si tiene fotos para habilitar el clic y la etiqueta
-            const tieneFotos = plato.imagenes && plato.imagenes.length >= 2;
-            const clickAccion = tieneFotos ? `onclick="abrirModal(${plato.id})"` : '';
-            const claseHeader = tieneFotos ? 'clickable-header has-photos' : 'clickable-header';
-            const etiquetaFotos = tieneFotos ? '<span class="cam-icon">📸 Fotos</span>' : '';
-
             item.innerHTML = `
                 <div class="info">
-                    <div class="${claseHeader}" ${clickAccion}>
+                    <div class="clickable-header" onclick="abrirModal(${plato.id})">
                         <h2 class="name">${plato.nombre}</h2>
-                        ${etiquetaFotos}
+                        <span class="cam-icon">📸 Fotos</span>
                     </div>
                     <div class="description">${plato.descripcion}</div>
                 </div>
                 <div class="right-side">
+                    <div class="price">$${plato.precio}</div>
+                    <div id="btn-container-${plato.id}">${botonHtml}</div>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    }
+
+    function abrirModal(id) {
+        const plato = menuData.find(p => p.id === id);
+        if (!plato || !plato.imagenes || plato.imagenes.length < 2) return;
+
+        document.getElementById('modal-dish-name').innerText = plato.nombre;
+        
+        // CORREGIDO: Llamado explícito sin romper el código
+
 
 
