@@ -52,7 +52,6 @@
 <div class="container">
     <img src="Portada.jpg" alt="Portada Ppuri" style="width: 100%; height: auto; max-height: 200px; object-fit: cover; border-radius: 14px; background-color: #f1eeeb;">
     
-    <!-- Logo flotante recortando la portada con borde blanco -->
     <div style="text-align: center; position: relative; margin-top: -65px; margin-bottom: 20px; z-index: 10;">
         <img src="logo.png" alt="Logo Ppuri" style="max-width: 110px; height: auto; border-radius: 50%; border: 5px solid white; box-shadow: 0 4px 15px rgba(34, 25, 25, 0.1);" onerror="this.style.display='none'">
     </div>
@@ -114,13 +113,25 @@
                 `;
             }
 
-            // Mapeo profesional: Habilita el link para CUALQUIER plato si tiene la propiedad en el JSON
             const tieneVideo = plato.videoUrl && plato.videoUrl.trim() !== "";
             const targetAccion = tieneVideo ? `href="${plato.videoUrl}" target="_blank" rel="noopener noreferrer"` : '';
             const claseHeader = tieneVideo ? 'clickable-header has-video' : 'clickable-header';
             const etiquetaVideo = tieneVideo ? '<span class="cam-icon">▶ Receta</span>' : '';
 
-            item.innerHTML = '<div class="info"><a class="' + claseHeader + '" ' + targetAccion + '><span class="name">' + plato.nombre + '</span>' + etiquetaVideo + '</a><div class="description">' + plato.descripcion + '</div></div><div class="right-side"><div class="price">$' + plato.precio + '</div><div id="btn-container-' + plato.id + '">' + botonHtml + '</div></div>';
+            // CORRECCIÓN PROFESIONAL: El motor usa comillas francesas para evitar conflictos con los links del JSON
+            item.innerHTML = `
+                <div class="info">
+                    <a class="${claseHeader}" ${targetAccion}>
+                        <span class="name">${plato.nombre}</span>
+                        ${etiquetaVideo}
+                    </a>
+                    <div class="description">${plato.descripcion}</div>
+                </div>
+                <div class="right-side">
+                    <div class="price">$${plato.precio}</div>
+                    <div id="btn-container-${plato.id}">${botonHtml}</div>
+                </div>
+            `;
             container.appendChild(item);
         });
     }
@@ -173,4 +184,3 @@
 
         menuData.forEach(plato => {
             if (carrito[plato.id]) {
-                const subtotal = plato.precio * carrito[plato.id];
