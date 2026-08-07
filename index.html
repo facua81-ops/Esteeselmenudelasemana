@@ -1,53 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Encabezado con tu foto de fondo 'portada.jpg' y tu logo circular grande -->
-<header style="position: relative; text-align: center; padding: 60px 20px; background-image: linear-gradient(rgba(45, 55, 72, 0.75), rgba(45, 55, 72, 0.75)), url('portada.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
-    <div style="max-width: 600px; margin: 0 auto; position: relative; z-index: 2;">
-        <img src="image_71655ed7.png" alt="Ppuri Logo" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #d4af37; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease;">
-        <h1 style="color: #ffffff; margin-top: 15px; font-size: 34px; font-weight: 700; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Nuestro Menú de la Semana</h1>
-        <p style="color: #ff9e9e; font-size: 15px; font-weight: 700; margin-top: 5px; margin-bottom: 0; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">Sabor directo a tu dirección</p>
-    </div>
-</header>
-</head>
-
+    <title>Ppuri - Menú Semanal</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-  /* Color borgoña para el precio */
-.price { 
-    font-size: 17px; 
-    font-weight: 700; 
-    color: #801d1d; 
-    margin-bottom: 12px; 
-}
-
-/* Flexbox adaptado para integrar el mini logo al lado de la información del plato */
-.menu-item { 
-    border-bottom: 1px solid #f1eeeb; 
-    padding: 20px 0; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    gap: 15px; 
-}
-
-.info-layout { 
-    display: flex; 
-    align-items: flex-start; 
-    gap: 12px; 
-    flex: 1; 
-}
-
-/* Estilo para el logo miniatura al lado de tus platos */
-.logo-mini { 
-    width: 36px; 
-    height: 36px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 1px solid #d4af37; 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08); 
-    margin-top: 2px; 
-}
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf8f6; margin: 0; padding: 20px; color: #221919; }
+        .container { max-width: 550px; margin: 0 auto; background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(34, 25, 25, 0.04); padding-bottom: 240px; }
+        h1 { text-align: center; color: #221919; margin: 0 0 8px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+        .subtitle { text-align: center; color: #8c8282; font-size: 14px; margin-bottom: 35px; font-weight: 400; }
+        .menu-item { border-bottom: 1px solid #f1eeeb; padding: 20px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+        .menu-item:last-child { border-bottom: none; }
+        .info { flex: 1; }
+        
+        /* Ajuste para que se entienda que se puede hacer clic */
+        .clickable-header { cursor: pointer; display: inline-block; }
+        .clickable-header:hover .name { color: #801d1d; text-decoration: underline; }
+        .name { font-weight: 700; font-size: 17px; color: #221919; transition: color 0.2s; }
+        .cam-icon { font-size: 13px; color: #8c8282; margin-left: 6px; font-weight: 400; }
+        
+        .description { font-size: 13.5px; color: #736969; margin-top: 6px; line-height: 1.5; font-weight: 400; }
+        .right-side { text-align: right; min-width: 110px; }
+        .price { font-size: 17px; font-weight: 700; color: #801d1d; margin-bottom: 12px; }
         
         .counter-container { display: inline-flex; align-items: center; background: #fdf2f2; border-radius: 24px; padding: 2px; }
         .btn-counter { background: transparent; color: #801d1d; border: none; width: 32px; height: 32px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: 0.2s; }
@@ -57,7 +37,7 @@
         .btn-add:hover { background: #801d1d; color: white; }
         
         .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); padding: 20px; display: none; z-index: 1000; border-top: 1px solid #f1eeeb; }
-        .cart-container { max-width: 600px; margin: 0 auto; }
+        .cart-container { max-width: 550px; margin: 0 auto; }
         .form-group { margin-bottom: 14px; }
         .form-group label { display: block; font-size: 11px; font-weight: 700; color: #221919; margin-bottom: 6px; letter-spacing: 0.5px; }
         .form-group input { width: 100%; padding: 12px; border: 1px solid #e1dbd6; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; color: #221919; background: #fdfdfd; }
@@ -65,17 +45,23 @@
         
         .btn-order { display: block; width: 100%; box-sizing: border-box; background: #25D366; color: white; text-align: center; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: background 0.2s; }
         .btn-order:hover { background: #128C7E; }
-@import url('https://googleapis.com');
 
-body { 
-    font-family: 'Fredoka', system-ui, sans-serif !important; 
-}
-
-.container { 
-    max-width: 420px !important; 
-    margin: 0 auto; 
-}
-
+        /* --- ESTILOS DE LA GALERÍA MODAL EMERGENTE --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(34, 25, 25, 0.6); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 15px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content { background: white; width: 100%; max-width: 480px; border-radius: 20px; padding: 20px; box-sizing: border-box; position: relative; transform: translateY(20px); transition: transform 0.3s ease; max-height: 90vh; overflow-y: auto; }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-close { position: absolute; top: 12px; right: 15px; background: #f1eeeb; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 16px; font-weight: bold; cursor: pointer; color: #221919; display: flex; align-items: center; justify-content: center; }
+        .modal-title { font-size: 18px; font-weight: 800; color: #221919; margin-bottom: 15px; padding-right: 25px; }
+        .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+        .modal-img-container { display: flex; flex-direction: column; gap: 6px; }
+        .modal-img-container span { font-size: 11px; font-weight: 600; color: #8c8282; text-align: center; }
+        .modal-grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; background: #f1eeeb; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        
+        /* Ajuste responsivo para pantallas muy chicas */
+        @media(max-width: 400px) {
+            .modal-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -84,6 +70,7 @@ body {
     <div class="subtitle">Selecciona tus platos semanales y realiza tu pedido directo a WhatsApp</div>
     <div id="menu-container">Cargando nuestro menú...</div>
 </div>
+
 <div class="cart-bar" id="cart-bar">
     <div class="cart-container">
         <div class="form-group">
@@ -97,6 +84,24 @@ body {
         <button class="btn-order" onclick="enviarWhatsApp()">
             Enviar Pedido a WhatsApp (<span id="cart-total">$0</span>)
         </button>
+    </div>
+</div>
+
+<!-- --- ESTRUCTURA DE LA VENTANA EMERGENTE (MODAL) --- -->
+<div class="modal-overlay" id="photo-modal" onclick="cerrarModalExterno(event)">
+    <div class="modal-content">
+        <button class="modal-close" onclick="cerrarModal()">×</button>
+        <div class="modal-title" id="modal-dish-name">Nombre del Plato</div>
+        <div class="modal-grid">
+            <div class="modal-img-container">
+                <img id="modal-img-1" src="" alt="Procedimiento de elaboración">
+                <span>Elaboración 🥣</span>
+            </div>
+            <div class="modal-img-container">
+                <img id="modal-img-2" src="" alt="Porción terminada">
+                <span>Así te llega 🥡</span>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -137,84 +142,26 @@ body {
                 `;
             }
 
-            item.innerHTML = '<div class="info-layout"><img src="image_71655ed7.png" alt="Ppuri" class="logo-mini"><div class="info"><div class="name">' + plato.nombre + '</div><div class="description">' + plato.descripcion + '</div></div></div><div class="right-side"><div class="price">$' + plato.precio + '</div><div id="btn-container-' + plato.id + '">' + botonHtml + '</div></div>';
-
+            // Al hacer clic en el contenedor del encabezado se abre el modal
+            item.innerHTML = `
+                <div class="info">
+                    <div class="clickable-header" onclick="abrirModal(${plato.id})">
+                        <span class="name">${plato.nombre}</span>
+                        <span class="cam-icon">📸 ver fotos</span>
+                    </div>
+                    <div class="description">${plato.descripcion}</div>
+                </div>
+                <div class="right-side">
+                    <div class="price">$${plato.precio}</div>
+                    <div id="btn-container-${plato.id}">${botonHtml}</div>
+                </div>
+            `;
             container.appendChild(item);
         });
     }
 
-    function agregarAlCarrito(id) {
-        if (carrito[id]) { carrito[id]++; } else { carrito[id] = 1; }
-        actualizarInterfazCarrito();
-        renderizarMenu();
-    }
-
-    function quitarDelCarrito(id) {
-        if (carrito[id]) {
-            carrito[id]--;
-            if (carrito[id] === 0) {
-                delete carrito[id];
-            }
-        }
-        actualizarInterfazCarrito();
-        renderizarMenu();
-    }
-
-    function actualizarInterfazCarrito() {
-        let total = 0;
-        let itemsTotales = 0;
-        menuData.forEach(plato => {
-            if (carrito[plato.id]) {
-                total += plato.precio * carrito[plato.id];
-                itemsTotales += carrito[plato.id];
-            }
-        });
-        const cartBar = document.getElementById('cart-bar');
-        if (itemsTotales > 0) {
-            cartBar.style.display = 'block';
-            document.getElementById('cart-total').innerText = '$' + total;
-        } else {
-            cartBar.style.display = 'none';
-        }
-    }
-
-    function enviarWhatsApp() {
-        const nombre = document.getElementById('txt-nombre').value.trim();
-        const direccion = document.getElementById('txt-direccion').value.trim();
-        if (!nombre || !direccion) { 
-            alert("Por favor, ingresa tu nombre y domicilio antes de continuar."); 
-            return; 
-        }
-        
-        let textoPedido = "*¡NUEVO PEDIDO - PPURI!*\n\n👤 *Cliente:* " + nombre + "\n📍 *Domicilio:* " + direccion + "\n\n🛒 *Detalle del Pedido:*\n";
-        let total = 0;
-
-        menuData.forEach(plato => {
-            if (carrito[plato.id]) {
-                const subtotal = plato.precio * carrito[plato.id];
-                textoPedido += "• " + carrito[plato.id] + "x " + plato.nombre + " ($" + plato.precio + " c/u) -> *$" + subtotal + "*\n";
-                total += subtotal;
-            }
-        });
-        textoPedido += "\n💰 *TOTAL A PAGAR:* *$" + total + "*";
-        
-        // Formato oficial universal sin intermediarios
-        const urlFinal = "https://wa.me/" + TELEFONO + "?text=" + encodeURIComponent(textoPedido);
-        
-        // Crea un enlace dinámico en memoria en el preciso instante del clic (Infalible contra bloqueos)
-        const linkTemporal = document.createElement("a");
-        linkTemporal.href = urlFinal;
-        linkTemporal.target = "_blank"; 
-        linkTemporal.rel = "noopener noreferrer";
-        
-        document.body.appendChild(linkTemporal);
-        linkTemporal.click();
-        document.body.removeChild(linkTemporal);
-    }
-
-    window.onload = cargarMenu;
-</script>
-</body>
-</html>
+    /* --- LOGICA PARA MANEJAR LAS FOTOS EN EL MODAL --- */
+    function abrirModal(id) {
+        const plato = menuData.find(p => p.id === id);
 
 
