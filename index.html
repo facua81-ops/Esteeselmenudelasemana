@@ -7,9 +7,9 @@
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ppuri - Menú Semanal</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcf8ee; margin: 0; padding: 20px; color: #221919; }
         .container { max-width: 550px; margin: 0 auto; background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(34, 25, 25, 0.04); padding-bottom: 240px; }
@@ -18,7 +18,14 @@
         .menu-item { border-bottom: 1px solid #f1eeeb; padding: 20px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
         .menu-item:last-child { border-bottom: none; }
         .info { flex: 1; }
-        .name { font-weight: 700; font-size: 17px; color: #221919; }
+        
+        /* Ajustes interactivos de color Terracota y Maíz */
+        .clickable-header { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: inherit; }
+        .clickable-header.has-video { cursor: pointer; }
+        .clickable-header.has-video:hover .name { color: #c05c46; text-decoration: underline; }
+        .name { font-weight: 700; font-size: 17px; color: #221919; margin: 0; }
+        .cam-icon { font-size: 11px; color: #c05c46; background: #fdf5df; padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap; }
+        
         .description { font-size: 13.5px; color: #736969; margin-top: 6px; line-height: 1.5; font-weight: 400; }
         .right-side { text-align: right; min-width: 110px; }
         .price { font-size: 17px; font-weight: 700; color: #c05c46; margin-bottom: 12px; }
@@ -35,7 +42,7 @@
         .form-group { margin-bottom: 14px; }
         .form-group label { display: block; font-size: 11px; font-weight: 700; color: #221919; margin-bottom: 6px; letter-spacing: 0.5px; }
         .form-group input { width: 100%; padding: 12px; border: 1px solid #e1dbd6; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; color: #221919; background: #fdfdfd; }
-        .form-group input:focus { border-color: #801d1d; outline: none; background: white; }
+        .form-group input:focus { border-color: #c05c46; outline: none; background: white; }
         
         .btn-order { display: block; width: 100%; box-sizing: border-box; background: #25D366; color: white; text-align: center; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: background 0.2s; }
         .btn-order:hover { background: #128C7E; }
@@ -43,12 +50,13 @@
 </head>
 <body>
 <div class="container">
-        <img src="Portada.jpg" alt="image_71655ed7.png" style="width: 100%; height: auto; max-height: 200px; object-fit: cover; border-radius: 14px; margin-bottom: 25px; background-color: #f1eeeb;">
-    <!-- LOGO DE PPURI CENTRADO -->
-    <div style="text-align: center; margin-bottom: 20px;">
-        <img src="logo.png" alt="logo.png" style="max-width: 110px; height: auto; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" onerror="this.style.display='none'">
+    <img src="Portada.jpg" alt="Portada Ppuri" style="width: 100%; height: auto; max-height: 200px; object-fit: cover; border-radius: 14px; background-color: #f1eeeb;">
+    
+    <!-- Logo flotante recortando la portada con borde blanco -->
+    <div style="text-align: center; position: relative; margin-top: -65px; margin-bottom: 20px; z-index: 10;">
+        <img src="logo.png" alt="Logo Ppuri" style="max-width: 110px; height: auto; border-radius: 50%; border: 5px solid white; box-shadow: 0 4px 15px rgba(34, 25, 25, 0.1);" onerror="this.style.display='none'">
     </div>
-
+    
     <h1>Ppuri</h1>
     <div class="subtitle">Selecciona tus platos semanales y realiza tu pedido directo a WhatsApp</div>
     <div id="menu-container">Cargando nuestro menú...</div>
@@ -81,30 +89,8 @@
             menuData = await respuesta.json();
             renderizarMenu();
         } catch (error) {
-            document.getElementById('menu-container').innerHTML = '<p style="color:#801d1d; text-align:center;">Error al cargar el menú. Asegúrate de que menu.json esté en la misma carpeta y subido a Netlify.</p>';
+            document.getElementById('menu-container').innerHTML = '<p style="color:#c05c46; text-align:center;">Error al cargar el menú. Asegúrate de que menu.json esté en la misma carpeta y subido a Netlify.</p>';
             console.error(error);
-        }
-    }
-    function abrirModal(id) {
-        const plato = menuData.find(p => p.id === id);
-        if (!plato || !plato.imagenes || plato.imagenes.length < 2) return;
-
-        document.getElementById('modal-dish-name').innerText = plato.nombre;
-        
-        // Separa la foto de elaboración [0] y la de porción [1]
-        document.getElementById('modal-img-1').src = plato.imagenes[0];
-        document.getElementById('modal-img-2').src = plato.imagenes[1];
-        
-        document.getElementById('photo-modal').classList.add('active');
-    }
-
-    function cerrarModal() {
-        document.getElementById('photo-modal').classList.remove('active');
-    }
-
-    function cerrarModalExterno(event) {
-        if (event.target.id === 'photo-modal') {
-            cerrarModal();
         }
     }
 
@@ -128,36 +114,15 @@
                 `;
             }
 
-            const tieneFotos = plato.imagenes && Array.isArray(plato.imagenes) && plato.imagenes.length >= 2;
-            const clickAccion = tieneFotos ? `onclick="abrirModal(${plato.id})"` : '';
-            const claseHeader = tieneFotos ? 'clickable-header has-photos' : 'clickable-header';
-            const etiquetaFotos = tieneFotos ? '<span class="cam-icon" style="font-size:11px; color:#801d1d; background:#fdf2f2; padding:2px 8px; border-radius:12px; margin-left:6px; font-weight:600; white-space:nowrap;">📸 Fotos</span>' : '';
+            // Mapeo profesional: Habilita el link para CUALQUIER plato si tiene la propiedad en el JSON
+            const tieneVideo = plato.videoUrl && plato.videoUrl.trim() !== "";
+            const targetAccion = tieneVideo ? `href="${plato.videoUrl}" target="_blank" rel="noopener noreferrer"` : '';
+            const claseHeader = tieneVideo ? 'clickable-header has-video' : 'clickable-header';
+            const etiquetaVideo = tieneVideo ? '<span class="cam-icon">▶ Receta</span>' : '';
 
-            item.innerHTML = '<div class="info"><div class="' + claseHeader + '" ' + clickAccion + ' style="display:inline-flex; align-items:center; cursor:' + (tieneFotos ? 'pointer' : 'default') + ';"><span class="name" style="font-weight:700; font-size:17px;">' + plato.nombre + '</span>' + etiquetaFotos + '</div><div class="description">' + plato.descripcion + '</div></div><div class="right-side"><div class="price">$' + plato.precio + '</div><div id="btn-container-' + plato.id + '">' + botonHtml + '</div></div>';
+            item.innerHTML = '<div class="info"><a class="' + claseHeader + '" ' + targetAccion + '><span class="name">' + plato.nombre + '</span>' + etiquetaVideo + '</a><div class="description">' + plato.descripcion + '</div></div><div class="right-side"><div class="price">$' + plato.precio + '</div><div id="btn-container-' + plato.id + '">' + botonHtml + '</div></div>';
             container.appendChild(item);
         });
-    }
-    function abrirModal(id) {
-        const plato = menuData.find(p => p.id === id);
-        if (!plato || !plato.imagenes || plato.imagenes.length < 2) return;
-
-        document.getElementById('modal-dish-name').innerText = plato.nombre;
-        
-        // Carga la foto 1 y la foto 2 de forma independiente usando corchetes numéricos
-        document.getElementById('modal-img-1').src = plato.imagenes[0];
-        document.getElementById('modal-img-2').src = plato.imagenes[1];
-        
-        document.getElementById('photo-modal').classList.add('active');
-    }
-
-    function cerrarModal() {
-        document.getElementById('photo-modal').classList.remove('active');
-    }
-
-    function cerrarModalExterno(event) {
-        if (event.target.id === 'photo-modal') {
-            cerrarModal();
-        }
     }
 
     function agregarAlCarrito(id) {
@@ -209,30 +174,3 @@
         menuData.forEach(plato => {
             if (carrito[plato.id]) {
                 const subtotal = plato.precio * carrito[plato.id];
-                textoPedido += "• " + carrito[plato.id] + "x " + plato.nombre + " ($" + plato.precio + " c/u) -> *$" + subtotal + "*\n";
-                total += subtotal;
-            }
-        });
-        textoPedido += "\n💰 *TOTAL A PAGAR:* *$" + total + "*";
-        
-        // Formato oficial universal sin intermediarios
-        const urlFinal = "https://wa.me/" + TELEFONO + "?text=" + encodeURIComponent(textoPedido);
-        
-        // Crea un enlace dinámico en memoria en el preciso instante del clic (Infalible contra bloqueos)
-        const linkTemporal = document.createElement("a");
-        linkTemporal.href = urlFinal;
-        linkTemporal.target = "_blank"; 
-        linkTemporal.rel = "noopener noreferrer";
-        
-        document.body.appendChild(linkTemporal);
-        linkTemporal.click();
-        document.body.removeChild(linkTemporal);
-    }
-
-    window.onload = cargarMenu;
-</script>
-</body>
-</html>
-
-
-            
