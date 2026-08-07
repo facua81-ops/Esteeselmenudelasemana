@@ -7,18 +7,28 @@
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ppuri - Menú Semanal</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf8f6; margin: 0; padding: 20px; color: #221919; }
         .container { max-width: 550px; margin: 0 auto; background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(34, 25, 25, 0.04); padding-bottom: 240px; }
+        
+        /* Estilo estético para la foto de portada */
+        .brand-header-img { width: 100%; height: auto; max-height: 200px; object-fit: cover; border-radius: 14px; margin-bottom: 25px; background-color: #f1eeeb; }
+        
         h1 { text-align: center; color: #221919; margin: 0 0 8px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
         .subtitle { text-align: center; color: #8c8282; font-size: 14px; margin-bottom: 35px; font-weight: 400; }
         .menu-item { border-bottom: 1px solid #f1eeeb; padding: 20px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
         .menu-item:last-child { border-bottom: none; }
         .info { flex: 1; }
-        .name { font-weight: 700; font-size: 17px; color: #221919; }
+        
+        .clickable-header { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .clickable-header.has-photos { cursor: pointer; }
+        .clickable-header.has-photos:hover .name { color: #801d1d; text-decoration: underline; }
+        .name { font-weight: 700; font-size: 17px; color: #221919; transition: color 0.2s; margin: 0; }
+        .cam-icon { font-size: 11px; color: #801d1d; background: #fdf2f2; padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap; }
+        
         .description { font-size: 13.5px; color: #736969; margin-top: 6px; line-height: 1.5; font-weight: 400; }
         .right-side { text-align: right; min-width: 110px; }
         .price { font-size: 17px; font-weight: 700; color: #801d1d; margin-bottom: 12px; }
@@ -39,14 +49,33 @@
         
         .btn-order { display: block; width: 100%; box-sizing: border-box; background: #25D366; color: white; text-align: center; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: background 0.2s; }
         .btn-order:hover { background: #128C7E; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(34, 25, 25, 0.6); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 15px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content { background: white; width: 100%; max-width: 480px; border-radius: 20px; padding: 20px; box-sizing: border-box; position: relative; transform: translateY(20px); transition: transform 0.3s ease; max-height: 90vh; overflow-y: auto; }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-close { position: absolute; top: 12px; right: 15px; background: #f1eeeb; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 16px; font-weight: bold; cursor: pointer; color: #221919; display: flex; align-items: center; justify-content: center; }
+        .modal-title { font-size: 18px; font-weight: 800; color: #221919; margin-bottom: 15px; padding-right: 25px; }
+        .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+        .modal-img-container { display: flex; flex-direction: column; gap: 6px; }
+        .modal-img-container span { font-size: 11px; font-weight: 600; color: #8c8282; text-align: center; }
+        .modal-grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; background: #f1eeeb; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        
+        @media(max-width: 400px) {
+            .modal-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 <div class="container">
+    <!-- LA FOTO DE PORTADA DESDE GITHUB -->
+    <img src="Portada.jpg" alt="Portada Ppuri" class="brand-header-img">
+    
     <h1>Ppuri</h1>
     <div class="subtitle">Selecciona tus platos semanales y realiza tu pedido directo a WhatsApp</div>
     <div id="menu-container">Cargando nuestro menú...</div>
 </div>
+
 <div class="cart-bar" id="cart-bar">
     <div class="cart-container">
         <div class="form-group">
@@ -63,22 +92,66 @@
     </div>
 </div>
 
+<div class="modal-overlay" id="photo-modal" onclick="cerrarModalExterno(event)">
+    <div class="modal-content">
+        <button class="modal-close" onclick="cerrarModal()">×</button>
+        <div class="modal-title" id="modal-dish-name">Nombre del Plato</div>
+        <div class="modal-grid">
+            <div class="modal-img-container">
+                <img id="modal-img-1" src="" alt="Procedimiento de elaboración">
+                <span>Elaboración 🥣</span>
+            </div>
+            <div class="modal-img-container">
+                <img id="modal-img-2" src="" alt="Porción terminada">
+                <span>Así te llega 🥡</span>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     const TELEFONO = "5492994711828";
-    let menuData = [];
     let carrito = {};
 
-    async function cargarMenu() {
-        try {
-            const respuesta = await fetch("menu.json?v=" + Date.now());
-            if (!respuesta.ok) throw new Error("No se pudo leer el archivo menu.json");
-            menuData = await respuesta.json();
-            renderizarMenu();
-        } catch (error) {
-            document.getElementById('menu-container').innerHTML = '<p style="color:#801d1d; text-align:center;">Error al cargar el menú. Asegúrate de que menu.json esté en la misma carpeta y subido a Netlify.</p>';
-            console.error(error);
-        }
-    }
+    const menuData = [
+      {
+        "id": 1,
+        "nombre": "Canelones de estacion",
+        "descripcion": "Temporada de espinacas.",
+        "precio": 18000
+      },
+      {
+        "id": 2,
+        "nombre": "Ñoquis tradicionales ",
+        "descripcion": "Papa, huevo, harina para la masa.",
+        "precio": 14000
+      },
+      {
+        "id": 3,
+        "nombre": "Sorrentinos Ppuri por docena",
+        "descripcion": "Tomates deshidratados, queso gouda y berenjenas.",
+        "precio": 14000
+      },
+      {
+        "id": 4,
+        "nombre": "Ensalada Ppuri",
+        "descripcion": "Remolacha asada al rescoldo, arroz para sushi, maiz frito, tofu condimentado, huevo pochado.",
+        "precio": 16000
+      },
+      {
+        "id": 5,
+        "nombre": "Empanadas cortadas a cuchillo por docena",
+        "descripcion": "Corte tiernizado cortado a cuchillo en coccion lenta, masa casera.",
+        "precio": 35000
+      },
+      {
+        "id": 6,
+        "nombre": "Rotolos de calabaza por porcion de 4 unidades",
+        "descripcion": "Masa al huevo, cabuttia, cebolla, queso.",
+        "precio": 15000,
+        "imagenes": ["rotolos-proceso.jpg", "rotolos-porcion.jpg"]
+      }
+    ];
 
     function renderizarMenu() {
         const container = document.getElementById('menu-container');
@@ -100,82 +173,4 @@
                 `;
             }
 
-            item.innerHTML = '<div class="info"><div class="name">' + plato.nombre + '</div><div class="description">' + plato.descripcion + '</div></div><div class="right-side"><div class="price">$' + plato.precio + '</div><div id="btn-container-' + plato.id + '">' + botonHtml + '</div></div>';
-            container.appendChild(item);
-        });
-    }
-
-    function agregarAlCarrito(id) {
-        if (carrito[id]) { carrito[id]++; } else { carrito[id] = 1; }
-        actualizarInterfazCarrito();
-        renderizarMenu();
-    }
-
-    function quitarDelCarrito(id) {
-        if (carrito[id]) {
-            carrito[id]--;
-            if (carrito[id] === 0) {
-                delete carrito[id];
-            }
-        }
-        actualizarInterfazCarrito();
-        renderizarMenu();
-    }
-
-    function actualizarInterfazCarrito() {
-        let total = 0;
-        let itemsTotales = 0;
-        menuData.forEach(plato => {
-            if (carrito[plato.id]) {
-                total += plato.precio * carrito[plato.id];
-                itemsTotales += carrito[plato.id];
-            }
-        });
-        const cartBar = document.getElementById('cart-bar');
-        if (itemsTotales > 0) {
-            cartBar.style.display = 'block';
-            document.getElementById('cart-total').innerText = '$' + total;
-        } else {
-            cartBar.style.display = 'none';
-        }
-    }
-
-    function enviarWhatsApp() {
-        const nombre = document.getElementById('txt-nombre').value.trim();
-        const direccion = document.getElementById('txt-direccion').value.trim();
-        if (!nombre || !direccion) { 
-            alert("Por favor, ingresa tu nombre y domicilio antes de continuar."); 
-            return; 
-        }
-        
-        let textoPedido = "*¡NUEVO PEDIDO - PPURI!*\n\n👤 *Cliente:* " + nombre + "\n📍 *Domicilio:* " + direccion + "\n\n🛒 *Detalle del Pedido:*\n";
-        let total = 0;
-
-        menuData.forEach(plato => {
-            if (carrito[plato.id]) {
-                const subtotal = plato.precio * carrito[plato.id];
-                textoPedido += "• " + carrito[plato.id] + "x " + plato.nombre + " ($" + plato.precio + " c/u) -> *$" + subtotal + "*\n";
-                total += subtotal;
-            }
-        });
-        textoPedido += "\n💰 *TOTAL A PAGAR:* *$" + total + "*";
-        
-        // Formato oficial universal sin intermediarios
-        const urlFinal = "https://wa.me/" + TELEFONO + "?text=" + encodeURIComponent(textoPedido);
-        
-        // Crea un enlace dinámico en memoria en el preciso instante del clic (Infalible contra bloqueos)
-        const linkTemporal = document.createElement("a");
-        linkTemporal.href = urlFinal;
-        linkTemporal.target = "_blank"; 
-        linkTemporal.rel = "noopener noreferrer";
-        
-        document.body.appendChild(linkTemporal);
-        linkTemporal.click();
-        document.body.removeChild(linkTemporal);
-    }
-
-    window.onload = cargarMenu;
-</script>
-</body>
-</html>
 
