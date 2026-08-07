@@ -4,41 +4,41 @@
     "nombre": "Canelones de estacion",
     "descripcion": "Temporada de espinacas.",
     "precio": 18000,
-    "imagenes": ["pasta1.jpg", "pasta2.jpg"]
+    "videoUrl": "https://youtube.com"
   },
   {
     "id": 2,
     "nombre": "Ñoquis tradicionales ",
     "descripcion": "Papa, huevo, harina para la masa.",
     "precio": 14000,
-    "imagenes": ["Pasta3.jpg", "pasta4.jpg"]
+    "videoUrl": "https://youtube.com"
   },
   {
     "id": 3,
     "nombre": "Sorrentinos Ppuri por docena",
     "descripcion": "Tomates deshidratados, queso gouda y berenjenas.",
     "precio": 14000,
-    "imagenes": ["pasta5.jpg", "pasta6.jpg"]
+    "videoUrl": "https://youtube.com"
   },
   {
     "id": 4,
     "nombre": "Ensalada Ppuri",
     "descripcion": "Remolacha asada al rescoldo, arroz para sushi, maiz frito, tofu condimentado, huevo pochado.",
     "precio": 16000,
-    "imagenes": ["pasta7.jpg", "pasta8.jpg"]
+    "videoUrl": "https://youtube.com"
   },
   {
     "id": 5,
     "nombre": "Empanadas cortadas a cuchillo por docena",
     "descripcion": "Corte tiernizado cortado a cuchillo en coccion lenta, masa casera.",
     "precio": 35000,
-    "imagenes": ["pasta9.jpg", "pasta10.jpg"]
+    "videoUrl": "https://youtube.com"
   },
   {
     "id": 6,
     "nombre": "Rotolos de calabaza por porcion de 4 unidades",
     "descripcion": "Masa al huevo, cabuttia, cebolla, queso.",
     "precio": 15000,
-    "imagenes": ["pasta11.jpg", "pasta12.jpg"]
+    "videoUrl": "https://youtube.com"
   }
 ]
