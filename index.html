@@ -104,20 +104,48 @@
 
 <script>
     const TELEFONO = "5492994711828";
-    let menuData = [];
     let carrito = {};
 
-    async function cargarMenu() {
-        try {
-            const respuesta = await fetch("menu.json?v=" + Date.now());
-            if (!respuesta.ok) throw new Error("No se pudo leer el archivo menu.json");
-            menuData = await respuesta.json();
-            renderizarMenu();
-        } catch (error) {
-            document.getElementById('menu-container').innerHTML = '<p style="color:#801d1d; text-align:center;">Error al cargar el menú. Asegúrate de que menu.json esté en la misma carpeta y subido a GitHub.</p>';
-            console.error(error);
-        }
-    }
+    // INTEGRADO: Los platos cargan directamente desde acá sin leer archivos externos
+    const menuData = [
+      {
+        "id": 1,
+        "nombre": "Canelones de estacion",
+        "descripcion": "Temporada de espinacas.",
+        "precio": 18000
+      },
+      {
+        "id": 2,
+        "nombre": "Ñoquis tradicionales ",
+        "descripcion": "Papa, huevo, harina para la masa.",
+        "precio": 14000
+      },
+      {
+        "id": 3,
+        "nombre": "Sorrentinos Ppuri por docena",
+        "descripcion": "Tomates deshidratados, queso gouda y berenjenas.",
+        "precio": 14000
+      },
+      {
+        "id": 4,
+        "nombre": "Ensalada Ppuri",
+        "descripcion": "Remolacha asada al rescoldo, arroz para sushi, maiz frito, tofu condimentado, huevo pochado.",
+        "precio": 16000
+      },
+      {
+        "id": 5,
+        "nombre": "Empanadas cortadas a cuchillo por docena",
+        "descripcion": "Corte tiernizado cortado a cuchillo en coccion lenta, masa casera.",
+        "precio": 35000
+      },
+      {
+        "id": 6,
+        "nombre": "Rotolos de calabaza por porcion de 4 unidades",
+        "descripcion": "Masa al huevo, cabuttia, cebolla, queso.",
+        "precio": 15000,
+        "imagenes": ["rotolos-proceso.jpg", "rotolos-porcion.jpg"]
+      }
+    ];
 
     function renderizarMenu() {
         const container = document.getElementById('menu-container');
@@ -142,20 +170,3 @@
             const tieneFotos = plato.imagenes && Array.isArray(plato.imagenes) && plato.imagenes.length >= 2;
             const clickAccion = tieneFotos ? `onclick="abrirModal(${plato.id})"` : '';
             const claseHeader = tieneFotos ? 'clickable-header has-photos' : 'clickable-header';
-            const etiquetaFotos = tieneFotos ? '<span class="cam-icon">📸 Fotos</span>' : '';
-
-            item.innerHTML = `
-                <div class="info">
-                    <div class="${claseHeader}" ${clickAccion}>
-                        <h2 class="name">${plato.nombre}</h2>
-                        ${etiquetaFotos}
-                    </div>
-                    <div class="description">${plato.descripcion}</div>
-                </div>
-                <div class="right-side">
-                    <div class="price">$${plato.precio}</div>
-                    <div id="btn-container-${plato.id}">${botonHtml}</div>
-                </div>
-            `;
-            container.appendChild(item);
-
