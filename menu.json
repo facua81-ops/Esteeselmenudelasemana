@@ -15,7 +15,7 @@
     "id": 3,
     "nombre": "Sorrentinos Ppuri por docena",
     "descripcion": "Tomates deshidratados, queso gouda y berenjenas.",
-    "precio": 14000
+    "precio": 14000 
   },
   {
     "id": 4,
@@ -26,14 +26,14 @@
   {
     "id": 5,
     "nombre": "Empanadas cortadas a cuchillo por docena",
-    "descripcion": "Corte tiernizado cortado a cuchillo en coccion lenta, masa casera.",
+    "descripcion": "Corte tiernizadocortado a cuchillo en coccion lenta, masa casera.",
     "precio": 35000
   },
   {
     "id": 6,
     "nombre": "Rotolos de calabaza por porcion de 4 unidades",
-    "descripcion": "Masa al huevo, cabuttia, cebolla, queso.",
-    "precio": 15000,
-    "imagenes": ["rotolos-proceso.jpg", "rotolos-porcion.jpg"]
+    "descripcion": "Masa al huevo, cabuttia,cebolla, queso .",
+    "precio": 15000
   }
 ]
+
