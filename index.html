@@ -14,7 +14,7 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf8f6; margin: 0; padding: 20px; color: #221919; }
         .container { max-width: 550px; margin: 0 auto; background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(34, 25, 25, 0.04); padding-bottom: 240px; }
         
-        /* Estilo estético para la foto de portada */
+        /* Imagen de Portada de Marca */
         .brand-header-img { width: 100%; height: auto; max-height: 200px; object-fit: cover; border-radius: 14px; margin-bottom: 25px; background-color: #f1eeeb; }
         
         h1 { text-align: center; color: #221919; margin: 0 0 8px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
@@ -23,6 +23,7 @@
         .menu-item:last-child { border-bottom: none; }
         .info { flex: 1; }
         
+        /* Cabecera del plato interactiva */
         .clickable-header { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 4px; }
         .clickable-header.has-photos { cursor: pointer; }
         .clickable-header.has-photos:hover .name { color: #801d1d; text-decoration: underline; }
@@ -33,6 +34,7 @@
         .right-side { text-align: right; min-width: 110px; }
         .price { font-size: 17px; font-weight: 700; color: #801d1d; margin-bottom: 12px; }
         
+        /* Contador de pedidos */
         .counter-container { display: inline-flex; align-items: center; background: #fdf2f2; border-radius: 24px; padding: 2px; }
         .btn-counter { background: transparent; color: #801d1d; border: none; width: 32px; height: 32px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: 0.2s; }
         .btn-counter:hover { background: #801d1d; color: white; }
@@ -40,6 +42,7 @@
         .btn-add { background: #fdf2f2; color: #801d1d; border: none; padding: 8px 16px; border-radius: 24px; font-weight: 600; cursor: pointer; font-size: 13px; transition: all 0.2s ease; }
         .btn-add:hover { background: #801d1d; color: white; }
         
+        /* Barra de carrito fija inferior */
         .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); padding: 20px; display: none; z-index: 1000; border-top: 1px solid #f1eeeb; }
         .cart-container { max-width: 550px; margin: 0 auto; }
         .form-group { margin-bottom: 14px; }
@@ -50,60 +53,7 @@
         .btn-order { display: block; width: 100%; box-sizing: border-box; background: #25D366; color: white; text-align: center; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: background 0.2s; }
         .btn-order:hover { background: #128C7E; }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(34, 25, 25, 0.6); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 15px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ppuri - Menú Semanal</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf8f6; margin: 0; padding: 20px; color: #221919; }
-        .container { max-width: 550px; margin: 0 auto; background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(34, 25, 25, 0.04); padding-bottom: 240px; }
-        
-        /* Estilo estético para la foto de portada */
-        .brand-header-img { width: 100%; height: auto; max-height: 200px; object-fit: cover; border-radius: 14px; margin-bottom: 25px; background-color: #f1eeeb; }
-        
-        h1 { text-align: center; color: #221919; margin: 0 0 8px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
-        .subtitle { text-align: center; color: #8c8282; font-size: 14px; margin-bottom: 35px; font-weight: 400; }
-        .menu-item { border-bottom: 1px solid #f1eeeb; padding: 20px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
-        .menu-item:last-child { border-bottom: none; }
-        .info { flex: 1; }
-        
-        .clickable-header { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-        .clickable-header.has-photos { cursor: pointer; }
-        .clickable-header.has-photos:hover .name { color: #801d1d; text-decoration: underline; }
-        .name { font-weight: 700; font-size: 17px; color: #221919; transition: color 0.2s; margin: 0; }
-        .cam-icon { font-size: 11px; color: #801d1d; background: #fdf2f2; padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap; }
-        
-        .description { font-size: 13.5px; color: #736969; margin-top: 6px; line-height: 1.5; font-weight: 400; }
-        .right-side { text-align: right; min-width: 110px; }
-        .price { font-size: 17px; font-weight: 700; color: #801d1d; margin-bottom: 12px; }
-        
-        .counter-container { display: inline-flex; align-items: center; background: #fdf2f2; border-radius: 24px; padding: 2px; }
-        .btn-counter { background: transparent; color: #801d1d; border: none; width: 32px; height: 32px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: 0.2s; }
-        .btn-counter:hover { background: #801d1d; color: white; }
-        .qty-display { min-width: 24px; text-align: center; font-weight: 700; font-size: 14px; color: #221919; }
-        .btn-add { background: #fdf2f2; color: #801d1d; border: none; padding: 8px 16px; border-radius: 24px; font-weight: 600; cursor: pointer; font-size: 13px; transition: all 0.2s ease; }
-        .btn-add:hover { background: #801d1d; color: white; }
-        
-        .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); padding: 20px; display: none; z-index: 1000; border-top: 1px solid #f1eeeb; }
-        .cart-container { max-width: 550px; margin: 0 auto; }
-        .form-group { margin-bottom: 14px; }
-        .form-group label { display: block; font-size: 11px; font-weight: 700; color: #221919; margin-bottom: 6px; letter-spacing: 0.5px; }
-        .form-group input { width: 100%; padding: 12px; border: 1px solid #e1dbd6; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; color: #221919; background: #fdfdfd; }
-        .form-group input:focus { border-color: #801d1d; outline: none; background: white; }
-        
-        .btn-order { display: block; width: 100%; box-sizing: border-box; background: #25D366; color: white; text-align: center; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: background 0.2s; }
-        .btn-order:hover { background: #128C7E; }
-
-        /* Estilos de la ventana emergente de fotos */
+        /* Modal interactivo de visualización de fotos */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(34, 25, 25, 0.6); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 15px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-content { background: white; width: 100%; max-width: 480px; border-radius: 20px; padding: 20px; box-sizing: border-box; position: relative; transform: translateY(20px); transition: transform 0.3s ease; max-height: 90vh; overflow-y: auto; }
@@ -122,7 +72,7 @@
 </head>
 <body>
 <div class="container">
-    <!-- Portada del Menú -->
+    <!-- Encabezado con imagen de marca -->
     <img src="Portada.jpg" alt="Portada Ppuri" class="brand-header-img">
     
     <h1>Ppuri</h1>
@@ -146,7 +96,7 @@
     </div>
 </div>
 
-<!-- Ventana Emergente para Detalle Multimedia -->
+<!-- Modal emergente para las fotos -->
 <div class="modal-overlay" id="photo-modal" onclick="cerrarModalExterno(event)">
     <div class="modal-content">
         <button class="modal-close" onclick="cerrarModal()">×</button>
@@ -168,50 +118,52 @@
     const TELEFONO = "5492994711828";
     let carrito = {};
 
-    // Base de datos de platos integrada de forma limpia y profesional
+    // Base de datos de productos optimizada profesionalmente de forma integrada
     const menuData = [
       {
-        "id": 1,
-        "nombre": "Canelones de estacion",
-        "descripcion": "Temporada de espinacas.",
-        "precio": 18000
+        id: 1,
+        nombre: "Canelones de estacion",
+        descripcion: "Temporada de espinacas.",
+        precio: 18000
       },
       {
-        "id": 2,
-        "nombre": "Ñoquis tradicionales ",
-        "descripcion": "Papa, huevo, harina para la masa.",
-        "precio": 14000
+        id: 2,
+        nombre: "Ñoquis tradicionales ",
+        descripcion: "Papa, huevo, harina para la masa.",
+        precio: 14000
       },
       {
-        "id": 3,
-        "nombre": "Sorrentinos Ppuri por docena",
-        "descripcion": "Tomates deshidratados, queso gouda y berenjenas.",
-        "precio": 14000
+        id: 3,
+        nombre: "Sorrentinos Ppuri por docena",
+        descripcion: "Tomates deshidratados, queso gouda y berenjenas.",
+        precio: 14000
       },
       {
-        "id": 4,
-        "nombre": "Ensalada Ppuri",
-        "descripcion": "Remolacha asada al rescoldo, arroz para sushi, maiz frito, tofu condimentado, huevo pochado.",
-        "precio": 16000
+        id: 4,
+        nombre: "Ensalada Ppuri",
+        descripcion: "Remolacha asada al rescoldo, arroz para sushi, maiz frito, tofu condimentado, huevo pochado.",
+        precio: 16000
       },
       {
-        "id": 5,
-        "nombre": "Empanadas cortadas a cuchillo por docena",
-        "descripcion": "Corte tiernizado cortado a cuchillo en coccion lenta, masa casera.",
-        "precio": 35000
+        id: 5,
+        nombre: "Empanadas cortadas a cuchillo por docena",
+        descripcion: "Corte tiernizado cortado a cuchillo en coccion lenta, masa casera.",
+        precio: 35000
       },
       {
-        "id": 6,
-        "nombre": "Rotolos de calabaza por porcion de 4 unidades",
-        "descripcion": "Masa al huevo, cabuttia, cebolla, queso.",
-        "precio": 15000,
-        "imagenes": ["rotolos-proceso.jpg", "rotolos-porcion.jpg"]
+        id: 6,
+        nombre: "Rotolos de calabaza por porcion de 4 unidades",
+        descripcion: "Masa al huevo, cabuttia, cebolla, queso.",
+        precio: 15000,
+        fotoProceso: "rotolos-proceso.jpg",
+        fotoCocinada: "rotolos-porcion.jpg"
       }
     ];
 
     function renderizarMenu() {
         const container = document.getElementById('menu-container');
         container.innerHTML = '';
+        
         menuData.forEach(plato => {
             const item = document.createElement('div');
             item.className = 'menu-item';
@@ -222,5 +174,3 @@
             if (cantidad > 0) {
                 botonHtml = `
                     <div class="counter-container">
-                        <button class="btn-counter" onclick="quitarDelCarrito(${plato.id})">-</button>
-                        <span class="qty-display">${cantidad}</span>
