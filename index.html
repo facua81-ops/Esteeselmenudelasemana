@@ -19,11 +19,11 @@
         .menu-item:last-child { border-bottom: none; }
         .info { flex: 1; }
         
-        /* Ajuste para que se entienda que se puede hacer clic */
-        .clickable-header { cursor: pointer; display: inline-block; }
+        /* Ajuste interactivo para celulares y notebooks */
+        .clickable-header { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 4px; }
         .clickable-header:hover .name { color: #801d1d; text-decoration: underline; }
-        .name { font-weight: 700; font-size: 17px; color: #221919; transition: color 0.2s; }
-        .cam-icon { font-size: 13px; color: #8c8282; margin-left: 6px; font-weight: 400; }
+        .name { font-weight: 700; font-size: 17px; color: #221919; transition: color 0.2s; margin: 0; }
+        .cam-icon { font-size: 12px; color: #801d1d; background: #fdf2f2; padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap; }
         
         .description { font-size: 13.5px; color: #736969; margin-top: 6px; line-height: 1.5; font-weight: 400; }
         .right-side { text-align: right; min-width: 110px; }
@@ -58,7 +58,6 @@
         .modal-img-container span { font-size: 11px; font-weight: 600; color: #8c8282; text-align: center; }
         .modal-grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; background: #f1eeeb; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
         
-        /* Ajuste responsivo para pantallas muy chicas */
         @media(max-width: 400px) {
             .modal-grid { grid-template-columns: 1fr; }
         }
@@ -87,7 +86,7 @@
     </div>
 </div>
 
-<!-- --- ESTRUCTURA DE LA VENTANA EMERGENTE (MODAL) --- -->
+<!-- --- VIRTUAL BOX PARA DETALLE MULTIMEDIA --- -->
 <div class="modal-overlay" id="photo-modal" onclick="cerrarModalExterno(event)">
     <div class="modal-content">
         <button class="modal-close" onclick="cerrarModal()">×</button>
@@ -142,12 +141,11 @@
                 `;
             }
 
-            // Al hacer clic en el contenedor del encabezado se abre el modal
             item.innerHTML = `
                 <div class="info">
                     <div class="clickable-header" onclick="abrirModal(${plato.id})">
-                        <span class="name">${plato.nombre}</span>
-                        <span class="cam-icon">📸 ver fotos</span>
+                        <h2 class="name">${plato.nombre}</h2>
+                        <span class="cam-icon">📸 Fotos</span>
                     </div>
                     <div class="description">${plato.descripcion}</div>
                 </div>
@@ -160,8 +158,8 @@
         });
     }
 
-    /* --- LOGICA PARA MANEJAR LAS FOTOS EN EL MODAL --- */
     function abrirModal(id) {
         const plato = menuData.find(p => p.id === id);
+
 
 
