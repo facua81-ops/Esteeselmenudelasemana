@@ -3,43 +3,37 @@
     "id": 1,
     "nombre": "Canelones de estacion",
     "descripcion": "Temporada de espinacas.",
-    "precio": 18000,
-    "imagenes": ["fotos/canelones-proceso.jpg", "fotos/canelones-porcion.jpg"]
+    "precio": 18000
   },
   {
     "id": 2,
     "nombre": "Ñoquis tradicionales ",
     "descripcion": "Papa, huevo, harina para la masa.",
-    "precio": 14000,
-    "imagenes": ["fotos/noquis-proceso.jpg", "fotos/noquis-porcion.jpg"]
+    "precio": 14000
   },
   {
     "id": 3,
     "nombre": "Sorrentinos Ppuri por docena",
     "descripcion": "Tomates deshidratados, queso gouda y berenjenas.",
-    "precio": 14000,
-    "imagenes": ["fotos/sorrentinos-proceso.jpg", "fotos/sorrentinos-porcion.jpg"]
+    "precio": 14000
   },
   {
     "id": 4,
     "nombre": "Ensalada Ppuri",
     "descripcion": "Remolacha asada al rescoldo, arroz para sushi, maiz frito, tofu condimentado, huevo pochado.",
-    "precio": 16000,
-    "imagenes": ["fotos/ensalada-proceso.jpg", "fotos/ensalada-porcion.jpg"]
+    "precio": 16000
   },
   {
     "id": 5,
     "nombre": "Empanadas cortadas a cuchillo por docena",
     "descripcion": "Corte tiernizado cortado a cuchillo en coccion lenta, masa casera.",
-    "precio": 35000,
-    "imagenes": ["fotos/empanadas-proceso.jpg", "fotos/empanadas-porcion.jpg"]
+    "precio": 35000
   },
   {
     "id": 6,
     "nombre": "Rotolos de calabaza por porcion de 4 unidades",
     "descripcion": "Masa al huevo, cabuttia, cebolla, queso.",
     "precio": 15000,
-    "imagenes": ["fotos/rotolos-proceso.jpg", "fotos/rotolos-porcion.jpg"]
+    "imagenes": ["rotolos-proceso.jpg", "rotolos-porcion.jpg"]
   }
 ]
-
