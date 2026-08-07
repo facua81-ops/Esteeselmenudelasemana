@@ -14,7 +14,6 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf8f6; margin: 0; padding: 20px; color: #221919; }
         .container { max-width: 550px; margin: 0 auto; background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(34, 25, 25, 0.04); padding-bottom: 240px; }
         
-        /* Imagen de Portada */
         .brand-header-img { width: 100%; height: auto; max-height: 200px; object-fit: cover; border-radius: 14px; margin-bottom: 25px; background-color: #f1eeeb; }
         
         h1 { text-align: center; color: #221919; margin: 0 0 8px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
@@ -23,7 +22,6 @@
         .menu-item:last-child { border-bottom: none; }
         .info { flex: 1; }
         
-        /* Encabezado dinámico para las fotos */
         .clickable-header { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 4px; }
         .clickable-header.has-photos { cursor: pointer; }
         .clickable-header.has-photos:hover .name { color: #801d1d; text-decoration: underline; }
@@ -51,7 +49,6 @@
         .btn-order { display: block; width: 100%; box-sizing: border-box; background: #25D366; color: white; text-align: center; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: background 0.2s; }
         .btn-order:hover { background: #128C7E; }
 
-        /* Ventana Emergente de Fotos (Modal) */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(34, 25, 25, 0.6); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 15px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-content { background: white; width: 100%; max-width: 480px; border-radius: 20px; padding: 20px; box-sizing: border-box; position: relative; transform: translateY(20px); transition: transform 0.3s ease; max-height: 90vh; overflow-y: auto; }
@@ -113,7 +110,6 @@
     const TELEFONO = "5492994711828";
     let carrito = {};
 
-    // El menú ahora vive adentro del HTML de forma profesional para que no falle nunca
     const menuData = [
       { id: 1, nombre: "Canelones de estacion", descripcion: "Temporada de espinacas.", precio: 18000 },
       { id: 2, nombre: "Ñoquis tradicionales ", descripcion: "Papa, huevo, harina para la masa.", precio: 14000 },
@@ -146,3 +142,7 @@
 
             const tieneFotos = plato.fotoProceso && plato.fotoCocinada;
             const clickAccion = tieneFotos ? `onclick="abrirModal(${plato.id})"` : '';
+            const claseHeader = tieneFotos ? 'clickable-header has-photos' : 'clickable-header';
+            const etiquetaFotos = tieneFotos ? '<span class="cam-icon">📸 Fotos</span>' : '';
+
+            item.innerHTML = `
