@@ -11,7 +11,7 @@
     "nombre": "Ñoquis tradicionales ",
     "descripcion": "Papa, huevo, harina para la masa.",
     "precio": 14000,
-    "imagenes": ["pasta3.jpg", "pasta4.jpg"]
+    "imagenes": ["Pasta3.jpg", "pasta4.jpg"]
   },
   {
     "id": 3,
