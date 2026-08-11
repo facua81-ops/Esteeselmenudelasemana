@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "nombre": "Canelones de estacion",
+    "nombre": "Canelones de estacion por docena",
     "descripcion": "Temporada de espinacas.",
     "precio": 18000,
     "videoUrl": "https://youtube.com"
@@ -9,28 +9,28 @@
   {
     "id": 2,
     "nombre": "Ñoquis tradicionales ",
-    "descripcion": "Papa, huevo, harina para la masa.",
+    "descripcion": "Papa, huevo, harina para la masa, con salsa de hongos secos",
     "precio": 14000,
     "videoUrl": "https://youtube.com"
   },
   {
     "id": 3,
     "nombre": "Sorrentinos Ppuri por docena",
-    "descripcion": "Tomates deshidratados, queso gouda y berenjenas.",
+    "descripcion": "Calabaza Cabuttia cremosa, cebolla caramelizada y queso.",
     "precio": 14000,
     "videoUrl": "https://youtube.com"
   },
   {
     "id": 4,
     "nombre": "Ensalada Ppuri",
-    "descripcion": "Remolacha asada al rescoldo, arroz para sushi, maiz frito, tofu condimentado, huevo pochado.",
+    "descripcion": "Remolacha asada al rescoldo, Trigo candeal, maiz frito, tofu condimentado, huevo pochado.",
     "precio": 16000,
     "videoUrl": "https://youtube.com"
   },
   {
     "id": 5,
     "nombre": "Empanadas cortadas a cuchillo por docena",
-    "descripcion": "Corte tiernizado cortado a cuchillo en coccion lenta, masa casera.",
+    "descripcion": "Corte tiernizado cortado a cuchillo en coccion lenta, masa casera, cebolla en cicel.",
     "precio": 35000,
     "videoUrl": "https://youtube.com"
   },
