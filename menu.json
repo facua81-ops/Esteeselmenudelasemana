@@ -1,15 +1,15 @@
 [
   {
     "id": 1,
-    "nombre": "Canelones de estacion por docena",
-    "descripcion": "Temporada de espinacas.",
+    "nombre": "Falafel en tortilla de maiz y curry",
+    "descripcion": "Falafel tradicional sobre tortilla de maiz al curry con ensalada y aderezos.",
     "precio": 18000,
     "videoUrl": "https://youtube.com"
   },
   {
     "id": 2,
     "nombre": "Ñoquis tradicionales ",
-    "descripcion": "Papa, huevo, harina para la masa, con salsa de hongos secos",
+    "descripcion": "Papa, huevo, harina para la masa, con salsa de hongos de pino",
     "precio": 14000,
     "videoUrl": "https://youtube.com"
   },
@@ -36,8 +36,8 @@
   },
   {
     "id": 6,
-    "nombre": "Rotolos de calabaza por porcion de 4 unidades",
-    "descripcion": "Masa al huevo, cabuttia, cebolla, queso.",
+    "nombre": "Rotolos de espinaca por porcion de 4 unidades",
+    "descripcion": "Masa al huevo, espinaca, cebolla",
     "precio": 15000,
     "videoUrl": "https://youtube.com"
   }
